@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"baseUrl": "./",
+		"declaration": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"incremental": true,
+		"module": "commonjs",
+		"outDir": "./tsc_output",
+		"removeComments": true,
+		"sourceMap": true,
+		"strict": true,
+		"target": "es2017"
+	},
+	"include": ["src", "types"],
+	"exclude": ["node_modules", "tsc_output"]
+}

@@ -1,0 +1,89 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js for use with Actions
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.13.1'
+      - name: Install Yarn
+        run: curl -o- -L https://yarnpkg.com/install.sh | bash
+      - name: Install dependencies with Yarn
+        run: yarn install
+      - name: Compile TypeScript
+        run: yarn run build
+  lint:
+    name: Lint
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js for use with Actions
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.13.1'
+      - name: Install Yarn
+        run: curl -o- -L https://yarnpkg.com/install.sh | bash
+      - name: Install dependencies with Yarn
+        run: yarn install
+      - name: Lint with XO
+        run: yarn run xo
+  style:
+    name: Check style
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js for use with Actions
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.13.1'
+      - name: Install Yarn
+        run: curl -o- -L https://yarnpkg.com/install.sh | bash
+      - name: Install dependencies with Yarn
+        run: yarn install
+      - name: Check style with Prettier
+        run: yarn run style
+  test:
+    name: Run unit tests
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout git repository
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js for use with Actions
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.13.1'
+      - name: Install Yarn
+        run: curl -o- -L https://yarnpkg.com/install.sh | bash
+      - name: Install dependencies with Yarn
+        run: yarn install
+      - name: Run tests
+        run: yarn run test
+      - name: Submit test coverage
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

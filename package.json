@@ -1,0 +1,83 @@
+{
+	"author": {
+		"email": "jonah@jonah.pw",
+		"name": "Jonah Snider",
+		"url": "https://jonah.pw"
+	},
+	"dependencies": {
+		"@godaddy/terminus": "^4.3.1",
+		"@nestjs/cli": "^6.12.9",
+		"@nestjs/common": "^6.10.7",
+		"@nestjs/core": "^6.10.7",
+		"@nestjs/passport": "^6.1.1",
+		"@nestjs/platform-express": "^6.10.7",
+		"@nestjs/swagger": "^4.0.9",
+		"@nestjs/terminus": "^6.5.3",
+		"@nestjs/typeorm": "^6.2.0",
+		"@nestjsx/crud": "^4.3.0-beta.0",
+		"@nestjsx/crud-typeorm": "^4.2.0",
+		"class-transformer": "^0.2.3",
+		"class-validator": "^0.11.0",
+		"common-tags": "^1.8.0",
+		"dotenv": "^8.2.0",
+		"passport": "^0.4.0",
+		"passport-http-bearer": "^1.0.1",
+		"pg": "^7.14.0",
+		"reflect-metadata": "^0.1.13",
+		"rimraf": "^3.0.0",
+		"rxjs": "^6.5.3",
+		"swagger-ui-express": "^4.1.2",
+		"typeorm": "^0.2.21"
+	},
+	"description": "Rewritten server-side API for Discoin",
+	"devDependencies": {
+		"@types/common-tags": "^1.8.0",
+		"@types/express": "^4.17.2",
+		"@types/node": "^12.12.14",
+		"@types/passport-http-bearer": "^1.0.34",
+		"@typescript-eslint/eslint-plugin": "^2.10.0",
+		"@typescript-eslint/parser": "^2.10.0",
+		"eslint-config-xo-typescript": "^0.23.0",
+		"prettier": "^1.19.1",
+		"ts-node": "^8.5.4",
+		"tsconfig-paths": "^3.9.0",
+		"typescript": "^3.7.3",
+		"xo": "^0.25.3"
+	},
+	"engines": {
+		"node": "12"
+	},
+	"license": "Apache-2.0",
+	"name": "discoin-server-rewrite",
+	"private": true,
+	"scripts": {
+		"build": "nest build",
+		"format": "prettier --ignore-path .gitignore --check \"./**/*.{{j,t}{s,sx},flow,{sc,c,le}ss,json,m{d,dx},{y,ya}ml}\"",
+		"lint": "xo",
+		"prebuild": "rimraf tsc_output",
+		"start": "nest start",
+		"start:debug": "nest start --debug --watch",
+		"start:dev": "nest start --watch",
+		"start:prod": "node tsc_output/main"
+	},
+	"version": "3.0.0",
+	"xo": {
+		"extends": "xo-typescript",
+		"extensions": [
+			"ts"
+		],
+		"overrides": [
+			{
+				"files": "**/*.service.ts",
+				"rules": {
+					"@typescript-eslint/no-useless-constructor": "off"
+				}
+			}
+		],
+		"prettier": true,
+		"rules": {
+			"import/extensions": "off",
+			"new-cap": "off"
+		}
+	}
+}
