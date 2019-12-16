@@ -43,8 +43,8 @@ jobs:
         run: yarn install
       - name: Lint with XO
         run: yarn run xo
-  style:
-    name: Check style
+  formatting:
+    name: Check formatting
 
     runs-on: ubuntu-latest
 
@@ -61,5 +61,5 @@ jobs:
         run: curl -o- -L https://yarnpkg.com/install.sh | bash
       - name: Install dependencies with Yarn
         run: yarn install
-      - name: Check style with Prettier
-        run: yarn run style
+      - name: Check formatting with Prettier
+        run: yarn run format
