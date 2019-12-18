@@ -52,3 +52,31 @@ yarn run lint
 ```
 
 Note that XO will also error if you have incorrect formatting, not just if your TypeScript code has errors.
+
+## Hosting
+
+This server is designed to run in a Docker environment hosted on an Ubuntu operating system (18.04).
+
+### Hosting Prequisites
+
+- [Docker](https://docs.docker.com/v17.09/engine/installation/linux/docker-ce/ubuntu/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- [git](https://git-scm.com/)
+- `sudo` access (required for Docker, usually)
+- Expose ports `80` and `443` on the server
+
+### Setup
+
+1. Setup user account
+2. Clone this repository (required for the `docker-compose.yml` file)
+
+   ```sh
+      git clone https://github.com/Discoin/rewrite.git discoin
+   ```
+
+3. Populate the `.env` file
+4. Start the containers
+
+   ```sh
+   docker-compose -f "docker-compose.yml" up -d
+   ```
