@@ -108,10 +108,10 @@
     webpack "4.41.2"
     webpack-node-externals "1.7.2"
 
-"@nestjs/common@^6.10.7":
-  version "6.10.10"
-  resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-6.10.10.tgz#8489b1d32e6e63b82dc8e275fd341431b8eef7af"
-  integrity sha512-QOPcRLrw5Ra/wRoWYJRnN+Je9xUMGeXGQqyefK0hnKBIne8VMui7N3Vn0HBwijgT/od8TbQ0CGY6iiwKtWqFCQ==
+"@nestjs/common@^6.10.11":
+  version "6.10.11"
+  resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-6.10.11.tgz#f67b5e3c2cc7677587df554ebcdc378d67839c62"
+  integrity sha512-XVdf7sChWY1Gt+q253W7P+wqiuyKU4MayoMKZOFCgZwDXNrpNdi85OaYG3Vte6RiWpJ94Q78rGNU91OGNBlplw==
   dependencies:
     axios "0.19.0"
     cli-color "2.0.0"
@@ -146,20 +146,10 @@
   resolved "https://registry.yarnpkg.com/@nestjs/passport/-/passport-6.1.1.tgz#991b8736c0ebffabb85a6455f0288055e5b52755"
   integrity sha512-wMhvi3Ru965nftCLUhFUqWNwyzSxVDmGgTEYVyWbOOmHFjNg5US47jzV2NresuUP2vjgg8J8S6DviKTVuLfkRw==
 
-"@nestjs/platform-express@6.10.11":
+"@nestjs/platform-express@6.10.11", "@nestjs/platform-express@^6.10.11":
   version "6.10.11"
   resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-6.10.11.tgz#d21a3620e9164e4c4469e8c7311e04841e53aa23"
   integrity sha512-J4Y1A3DVWW6WukummhMK6ER03H7S3m12a938tmJjDqGBAuDInFS4a6t0lFe0ivJLfvlTU9xjZ0PU7Z+VhDt6aQ==
-  dependencies:
-    body-parser "1.19.0"
-    cors "2.8.5"
-    express "4.17.1"
-    multer "1.4.2"
-
-"@nestjs/platform-express@^6.10.7":
-  version "6.10.10"
-  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-6.10.10.tgz#17b300697761622d3d67f635f4ca55d0ab6934f3"
-  integrity sha512-UcHMrFwWfdq15ZW2u6q0oda/XI3oR79GEdCvYWfl4anjLxxOc01AH9hjjdcADkHyKrxbwCSjr/H31c04Cvl9FQ==
   dependencies:
     body-parser "1.19.0"
     cors "2.8.5"
@@ -224,7 +214,7 @@
   dependencies:
     uuid "3.3.3"
 
-"@nestjsx/crud-request@^4.3.0-beta.0":
+"@nestjsx/crud-request@^4.3.0-4.3.0-beta.0.0":
   version "4.3.0-beta.0"
   resolved "https://registry.yarnpkg.com/@nestjsx/crud-request/-/crud-request-4.3.0-beta.0.tgz#7d63743560f19066e9fde672475d9bf3bdaf5215"
   integrity sha512-Yx+CxsMsRLilSKq9kDLok0gKvOf+yNDlG7f5+FRaywH43tQs+7k4BSKRFOOsEnHfPs/fX2CFK9t++rV2qz9cgw==
@@ -237,16 +227,16 @@
   resolved "https://registry.yarnpkg.com/@nestjsx/crud-typeorm/-/crud-typeorm-4.2.0.tgz#1b0b176b5ef7b56c255bc2e0d3c911ca23673cfa"
   integrity sha512-hii/SXnLUrgq73OuSlDwEc6iDTClX6bi554FjjHPQgl2PSm+W7D/mjr4mqfqgQHCqLH1ZvuGsT7Kv3gWGJD+bw==
 
-"@nestjsx/crud@^4.3.0-beta.0":
-  version "4.3.0-beta.0"
-  resolved "https://registry.yarnpkg.com/@nestjsx/crud/-/crud-4.3.0-beta.0.tgz#5a258e653fb74d76afa804225b3bbf34b4c8dc46"
-  integrity sha512-PMdXRjbNG2u5+xpZE4OZCfYZd2q6FrB3JsEdOrHt6JhLz4HMWCn0BnNmOZT02eKGbUJCE53Nxv/evcdUbOUGoA==
+"@nestjsx/crud@^4.3.0-4.3.0-beta.0.0":
+  version "4.3.0-4.3.0-beta.0.0"
+  resolved "https://registry.yarnpkg.com/@nestjsx/crud/-/crud-4.3.0-4.3.0-beta.0.0.tgz#00a8a8ff611455e426628c53bb8b81cef596ec3b"
+  integrity sha512-IOXz70ZV7hNlpJBkBixlCjDP0B3sxaDftodM/GQyXg72+Ye6FPxJIEx3Gaexlz/U6/rz4/ClCE9e38SnqdSmzQ==
   dependencies:
-    "@nestjsx/crud-request" "^4.3.0-beta.0"
-    "@nestjsx/util" "^4.3.0-beta.0"
+    "@nestjsx/crud-request" "^4.3.0-4.3.0-beta.0.0"
+    "@nestjsx/util" "^4.3.0-4.3.0-beta.0.0"
     deepmerge "^3.2.0"
 
-"@nestjsx/util@^4.3.0-beta.0":
+"@nestjsx/util@^4.3.0-4.3.0-beta.0.0", "@nestjsx/util@^4.3.0-beta.0":
   version "4.3.0-beta.0"
   resolved "https://registry.yarnpkg.com/@nestjsx/util/-/util-4.3.0-beta.0.tgz#3973d0f9a9ef36355021dc3adaca56f05ca6545c"
   integrity sha512-2CL03lrjbDRD8+aaXIb6GU1Oian89MIlidYx5/TPUVHhd3OUooOz2Hm9TJBlhyp/cD128t2JLhngpLZI7M3X7g==
@@ -458,10 +448,10 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
-"@types/node@*", "@types/node@^12.12.18":
-  version "12.12.18"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.18.tgz#8d16634797d63c2af5bc647ce879f8de20b56469"
-  integrity sha512-DBkZuIMFuAfjJHiunyRc+aNvmXYNwV1IPMgGKGlwCp6zh6MKrVtmvjSWK/axWcD25KJffkXgkfvFra8ndenXAw==
+"@types/node@*", "@types/node@^12.12.20":
+  version "12.12.20"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.20.tgz#7b693038ce661fe57a7ffa4679440b5e7c5e8b99"
+  integrity sha512-VAe+DiwpnC/g448uN+/3gRl4th0BTdrR9gSLIOHA+SUQskaYZQDOHG7xmjiE7JUhjbXnbXytf6Ih+/pA6CtMFQ==
 
 "@types/node@^10.1.0":
   version "10.17.9"
@@ -5516,10 +5506,10 @@ pg-types@^2.1.0:
     postgres-date "~1.0.4"
     postgres-interval "^1.1.0"
 
-pg@^7.14.0:
-  version "7.14.0"
-  resolved "https://registry.yarnpkg.com/pg/-/pg-7.14.0.tgz#f46727845ad19c2670a7e8151063a670338b6057"
-  integrity sha512-TLsdOWKFu44vHdejml4Uoo8h0EwCjdIj9Z9kpz7pA5i8iQxOTwVb1+Fy+X86kW5AXKxQpYpYDs4j/qPDbro/lg==
+pg@^7.15.0:
+  version "7.15.0"
+  resolved "https://registry.yarnpkg.com/pg/-/pg-7.15.0.tgz#3c695c046fa4a4db78a12046486c4c122b4242b2"
+  integrity sha512-eHE1n/98QB/T8J9Mc9AKTIC4yzo2Q7C2MT+IHp9TZR18nobqpsH8dmDO33dUhZ8A5Nfu6tC1TIkjrT3JoWHcOw==
   dependencies:
     buffer-writer "2.0.0"
     packet-reader "1.0.0"
