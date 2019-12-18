@@ -180,7 +180,8 @@ $RECYCLE.BIN/
 # TypeScript compiler output
 tsc_output
 
-### Docker specific stuff
+### Files only ignored in this Docker ignore file
+docker-compose.yml
 .dependabot
 .github
 .vscode
