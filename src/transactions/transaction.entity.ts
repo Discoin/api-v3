@@ -29,6 +29,7 @@ export class Transaction {
 	@ApiProperty({
 		description: 'The bot currency ID that this transaction is converting from.',
 		readOnly: true,
+		writeOnly: true,
 		example: 'OAT'
 	})
 	fromId!: string;
@@ -53,7 +54,7 @@ export class Transaction {
 	 * The ID of the currency this transaction is converting to.
 	 */
 	@Column({nullable: true, unique: false})
-	@ApiProperty({description: 'The ID of the currency this transaction is converting to.', example: 'OAT'})
+	@ApiProperty({description: 'The ID of the currency this transaction is converting to.', example: 'OAT', writeOnly: true})
 	@IsDefined({groups: [CREATE]})
 	toId!: string;
 
