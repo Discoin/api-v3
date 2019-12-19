@@ -1,12 +1,15 @@
 {
-	http_port 8080
-	http_port 8443
+	http_port 80
+	https_port 443
 	experimental_http3
 }
 
-https://discoin.zws.im:8080
+discoin.zws.im
+
 reverse_proxy / {
 	to 127.0.0.1:3000
+	health_path /health
+	health_status 200
 	transport http {
 		read_buffer 4096
 	}
