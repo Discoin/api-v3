@@ -24,11 +24,11 @@ export class TransactionOwnerGuard implements CanActivate {
 		const transaction = await getRepository(Transaction).findOne(req.params.id);
 
 		if (transaction) {
-			const transactionOwner = await getRepository(Bot).findOne({where: {currency: {id: transaction.fromId}}});
+			const transactionRecipient = await getRepository(Bot).findOne({where: {currency: {id: transaction.toId}}});
 
-			const requestBotIsTransactionCreator = transactionOwner?.token === signedInBot.token;
+			const requestBotIsTransactionRecipient = transactionRecipient?.token === signedInBot.token;
 
-			return requestBotIsTransactionCreator;
+			return requestBotIsTransactionRecipient;
 		}
 
 		return false;

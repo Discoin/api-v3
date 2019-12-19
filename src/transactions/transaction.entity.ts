@@ -1,6 +1,16 @@
 import {Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, BeforeInsert, getRepository} from 'typeorm';
 import {ApiProperty} from '@nestjs/swagger';
-import {IsNumber, IsNumberString, Length, Max, IsOptional, IsDefined, IsPositive, IsNotEmpty} from 'class-validator';
+import {
+	IsNumber,
+	IsNumberString,
+	Length,
+	Max,
+	IsOptional,
+	IsDefined,
+	IsPositive,
+	IsNotEmpty,
+	Equals
+} from 'class-validator';
 import {CrudValidationGroups} from '@nestjsx/crud';
 import {stripIndents} from 'common-tags';
 import {Entities} from 'src/util/constants';
@@ -25,13 +35,7 @@ export class Transaction {
 	})
 	id!: string;
 
-	@Column({nullable: true, unique: false})
-	@ApiProperty({
-		description: 'The bot currency ID that this transaction is converting from.',
-		readOnly: true,
-		writeOnly: true,
-		example: 'OAT'
-	})
+	@Column({nullable: true})
 	fromId!: string;
 
 	/** The bot currency that this transaction is converting from. */
@@ -53,8 +57,12 @@ export class Transaction {
 	/**
 	 * The ID of the currency this transaction is converting to.
 	 */
-	@Column({nullable: true, unique: false})
-	@ApiProperty({description: 'The ID of the currency this transaction is converting to.', example: 'OAT', writeOnly: true})
+	@Column({nullable: true})
+	@ApiProperty({
+		description: 'The ID of the currency this transaction is converting to.',
+		example: 'OAT',
+		writeOnly: true
+	})
 	@IsDefined({groups: [CREATE]})
 	toId!: string;
 
@@ -98,6 +106,7 @@ export class Transaction {
 	/**
 	 * Whether or not this transaction was handled by the recipient bot.
 	 * A transaction is handled when the recipient bot paid the respective user the correct amount in bot currency.
+	 * Can only be updated by the recipient bot.
 	 */
 	@Column({default: false})
 	@ApiProperty({
@@ -106,7 +115,8 @@ export class Transaction {
 		default: false,
 		required: false
 	})
-	@IsOptional({always: true})
+	@IsDefined({groups: [UPDATE]})
+	@Equals(undefined, {groups: [CREATE]})
 	handled!: boolean;
 
 	/** Timestamp of when this transaction was initiated. */
