@@ -8,6 +8,9 @@ import {Entities} from './util/constants';
 async function bootstrap(): Promise<void> {
 	const app = await NestFactory.create(AppModule);
 
+	// Enable CORS headers
+	app.enableCors();
+
 	app.useGlobalPipes(
 		new ValidationPipe({
 			whitelist: true,
