@@ -115,6 +115,7 @@ export class Transaction {
 		default: false,
 		required: false
 	})
+	@IsOptional({groups: [CREATE]})
 	@IsDefined({groups: [UPDATE]})
 	@Equals(undefined, {groups: [CREATE]})
 	handled!: boolean;
