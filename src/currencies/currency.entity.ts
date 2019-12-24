@@ -6,7 +6,7 @@ import {IsNumber, IsPositive, IsDefined} from 'class-validator';
 @Entity({name: Entities.CURRENCIES})
 export class Currency {
 	/** The shortened currency ID. */
-	@PrimaryColumn()
+	@PrimaryColumn({unique: true, nullable: false})
 	@IsDefined()
 	@ApiProperty({
 		description: 'The shortened currency ID.',

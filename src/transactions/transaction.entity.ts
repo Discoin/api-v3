@@ -35,7 +35,7 @@ export class Transaction {
 	})
 	id!: string;
 
-	@Column({nullable: true})
+	@Column({nullable: false, unique: false})
 	fromId!: string;
 
 	/** The bot currency that this transaction is converting from. */
@@ -57,7 +57,7 @@ export class Transaction {
 	/**
 	 * The ID of the currency this transaction is converting to.
 	 */
-	@Column({nullable: true})
+	@Column({nullable: false, unique: false})
 	@ApiProperty({
 		description: 'The ID of the currency this transaction is converting to.',
 		example: 'OAT',
