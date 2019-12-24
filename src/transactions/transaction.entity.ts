@@ -1,21 +1,21 @@
-import {Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, BeforeInsert, getRepository} from 'typeorm';
 import {ApiProperty} from '@nestjs/swagger';
+import {CrudValidationGroups} from '@nestjsx/crud';
 import {
+	Equals,
+	IsDefined,
+	IsNotEmpty,
 	IsNumber,
 	IsNumberString,
-	Length,
-	Max,
 	IsOptional,
-	IsDefined,
 	IsPositive,
-	IsNotEmpty,
-	Equals
+	Length,
+	Max
 } from 'class-validator';
-import {CrudValidationGroups} from '@nestjsx/crud';
 import {stripIndents} from 'common-tags';
-import {Entities} from 'src/util/constants';
-import {Currency} from 'src/currencies/currency.entity';
 import {Bot} from 'src/bots/bot.entity';
+import {Currency} from 'src/currencies/currency.entity';
+import {Entities} from 'src/util/constants';
+import {BeforeInsert, Column, Entity, getRepository, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
 import {SignedInBot} from 'types/bot';
 
 const {CREATE, UPDATE} = CrudValidationGroups;
@@ -39,7 +39,7 @@ export class Transaction {
 	fromId!: string;
 
 	/** The bot currency that this transaction is converting from. */
-	@OneToOne(_type => Currency)
+	@ManyToOne(_type => Currency)
 	@JoinColumn()
 	@ApiProperty({
 		description: 'The bot currency that this transaction is converting from.',
@@ -67,7 +67,7 @@ export class Transaction {
 	toId!: string;
 
 	/** The bot currency that this transaction is converting to. */
-	@OneToOne(_type => Currency)
+	@ManyToOne(_type => Currency)
 	@JoinColumn()
 	@ApiProperty({
 		description: 'The bot currency that this transaction is converting to.',
