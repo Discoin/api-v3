@@ -8,7 +8,7 @@ import {Validator} from 'class-validator';
 const validator = new Validator();
 
 @Injectable()
-export class TransactionOwnerGuard implements CanActivate {
+export class TransactionRecipientGuard implements CanActivate {
 	async canActivate(context: ExecutionContext): Promise<boolean> {
 		const req = context.switchToHttp().getRequest();
 		const signedInBot: SignedInBot | undefined = req.user;

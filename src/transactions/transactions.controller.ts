@@ -5,9 +5,10 @@ import {Crud} from '@nestjsx/crud';
 import {Transaction} from 'src/transactions/transaction.entity';
 import {TransactionsService} from 'src/transactions/transactions.service';
 import {Entities} from 'src/util/constants';
-import {TransactionOwnerGuard} from 'src/auth/transaction-owner.guard';
+import {TransactionRecipientGuard} from 'src/auth/transaction-recipient.guard';
 import {BotAPITokenInterceptor} from './bot-from-token.interceptor';
 import {ConversionCheckGuard} from './conversion-check.guard';
+import {TransactionUpdateGuard} from './transaction-update.guard';
 
 const currencyJoinOptions = {
 	eager: true,
@@ -29,15 +30,15 @@ const currencyJoinOptions = {
 	routes: {
 		only: ['createManyBase', 'createOneBase', 'getManyBase', 'getOneBase', 'updateOneBase'],
 		createManyBase: {
-			decorators: [UseGuards(AuthGuard('bearer'), ConversionCheckGuard)],
+			decorators: [UseGuards(AuthGuard('bearer'), ConversionCheckGuard, TransactionUpdateGuard)],
 			interceptors: [BotAPITokenInterceptor]
 		},
 		createOneBase: {
-			decorators: [UseGuards(AuthGuard('bearer'), ConversionCheckGuard)],
+			decorators: [UseGuards(AuthGuard('bearer'), ConversionCheckGuard, TransactionUpdateGuard)],
 			interceptors: [BotAPITokenInterceptor]
 		},
 		updateOneBase: {
-			decorators: [UseGuards(AuthGuard('bearer'), TransactionOwnerGuard)],
+			decorators: [UseGuards(AuthGuard('bearer'), TransactionRecipientGuard)],
 			interceptors: [BotAPITokenInterceptor]
 		}
 	},

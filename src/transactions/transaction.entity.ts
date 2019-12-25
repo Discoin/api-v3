@@ -1,7 +1,7 @@
 import {ApiProperty} from '@nestjs/swagger';
 import {CrudValidationGroups} from '@nestjsx/crud';
 import {
-	Equals,
+	IsBoolean,
 	IsDefined,
 	IsNotEmpty,
 	IsNumber,
@@ -112,13 +112,17 @@ export class Transaction {
 	@Column({default: false})
 	@ApiProperty({
 		description: stripIndents`Whether or not this transaction was handled by the recipient bot.
-			A transaction is handled when the recipient bot paid the respective user the correct amount in bot currency.`,
+			A transaction is handled when the recipient bot paid the respective user the correct amount in bot currency.
+			Can only be updated by the recipient bot.`,
 		default: false,
 		required: false
 	})
 	@IsOptional({groups: [CREATE]})
 	@IsDefined({groups: [UPDATE]})
-	@Equals(undefined, {groups: [CREATE]})
+	// This is broken for some reason and will trigger on PATCH requests as well
+	// Temporarily fixed with {@TransactionUpdateGuard}
+	// @Equals(undefined, {groups: [CREATE]})
+	@IsBoolean()
 	handled!: boolean;
 
 	/** Timestamp of when this transaction was initiated. */
