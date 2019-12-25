@@ -62,9 +62,9 @@ export class Transaction {
 		description: 'The ID of the currency this transaction is converting to.',
 		example: 'OAT',
 		writeOnly: true
-  })
+	})
 	@IsDefined({groups: [CREATE]})
-  @IsOptional({groups: [UPDATE]})
+	@IsOptional({groups: [UPDATE]})
 	toId!: string;
 
 	/** The bot currency that this transaction is converting to. */
