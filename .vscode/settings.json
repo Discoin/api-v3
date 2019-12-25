@@ -2,5 +2,6 @@
 	"editor.codeActionsOnSave": {
 		"source.organizeImports": false
 	},
+	"editor.insertSpaces": false,
 	"typescript.tsdk": "node_modules\\typescript\\lib"
 }
