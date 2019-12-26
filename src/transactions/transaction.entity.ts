@@ -157,11 +157,12 @@ export class Transaction {
 			if (bot?.token) {
 				this.fromId = bot.currency.id;
 
-				// Decrease the `from` currency reserve
+				// Increase the `from` currency reserve
 				currencies
 					.createQueryBuilder()
 					.update()
-					.set({reserve: () => `reserve - ${this.amount}`})
+					// The transaction amount is already in the from currency so no need to convert
+					.set({reserve: () => `reserve + ${this.amount}`})
 					.where('id = :id', {id: this.fromId})
 					.execute();
 
@@ -175,12 +176,12 @@ export class Transaction {
 					// This rounds the value to 2 decimal places
 					this.payout = parseFloat((fromDiscoinValue * toCurrency.value).toFixed(2));
 
-					// Increase the `to` currency reserve
+					// Decrease the `to` currency reserve
 					currencies
 						.createQueryBuilder()
 						.update()
 						// Remember to convert the `from` currency to the `from` currency amount
-						.set({reserve: () => `reserve + ${(this.amount * bot.currency.value) / toCurrency.value}`})
+						.set({reserve: () => `reserve - ${(this.amount * bot.currency.value) / toCurrency.value}`})
 						.where('id = :id', {id: this.toId})
 						.execute();
 				}
