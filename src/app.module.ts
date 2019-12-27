@@ -29,7 +29,7 @@ import {TerminusOptionsService} from './health-checks/terminus-options.service';
 			username: postgres.USER,
 			port: postgres.PORT,
 			entities: [Currency, Bot, Transaction],
-			ssl: true,
+			ssl: postgres.SSL,
 			synchronize: true
 		}),
 		TerminusModule.forRootAsync({

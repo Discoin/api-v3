@@ -1,8 +1,19 @@
 version: '3.7'
 networks:
-  web:
-    name: web
+  backend:
+    driver: bridge
+    name: backend
 services:
+  database:
+    image: postgres
+    restart: always
+    env_file: postgres.env
+    ports:
+      - '5432:5432'
+    volumes:
+      - /srv/docker/postgresql:/var/lib/postgresql
+    networks:
+      - backend
   # The actual server
   api:
     image: discoingroup/discoin
@@ -10,8 +21,12 @@ services:
     env_file: .env
     ports:
       - '3000:3000'
+    depends_on:
+      - database
     networks:
-      - web
+      - backend
+    links:
+      - database
   # Autoupdate images
   watchtower:
     image: v2tec/watchtower

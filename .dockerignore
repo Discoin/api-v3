@@ -180,6 +180,9 @@ $RECYCLE.BIN/
 # TypeScript compiler output
 tsc_output
 
+# PostgreSQL config
+postgres.env
+
 ### Files only ignored in this Docker ignore file
 docker-compose.yml
 .dependabot
