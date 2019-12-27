@@ -173,17 +173,24 @@ export class Transaction {
 				const toCurrency = await currencies.findOne(this.toId);
 
 				if (toCurrency) {
-					// This rounds the value to 2 decimal places
-					this.payout = parseFloat((fromDiscoinValue / toCurrency.value).toFixed(2));
+					// Payout should never be less than 0
+					this.payout = Math.max(parseFloat((fromDiscoinValue / toCurrency.value).toFixed(2)), 0);
 
-					// Decrease the `to` currency reserve
-					currencies
-						.createQueryBuilder()
-						.update()
-						// Remember to convert the `from` currency to the `from` currency amount
-						.set({reserve: () => `reserve - ${(this.amount * bot.currency.value) / toCurrency.value}`})
-						.where('id = :id', {id: this.toId})
-						.execute();
+					// Remember to convert the `from` currency to the `from` currency amount
+					const difference = (this.amount * bot.currency.value) / toCurrency.value;
+
+					// Avoid making
+					if (toCurrency.reserve - difference > 1) {
+						// This rounds the value to 2 decimal places
+
+						// Decrease the `to` currency reserve
+						currencies
+							.createQueryBuilder()
+							.update()
+							.set({reserve: () => `reserve - ${difference}`})
+							.where('id = :id', {id: this.toId})
+							.execute();
+					}
 				}
 			}
 		}
