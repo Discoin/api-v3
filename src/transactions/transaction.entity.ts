@@ -169,12 +169,12 @@ export class Transaction {
 				// Market cap for the `from` currency before this transaction was started
 				const marketCap = bot.currency.reserve * bot.currency.value;
 				const newConversionRate = marketCap / (bot.currency.reserve - this.amount);
-				const fromDiscoinValue = this.amount / newConversionRate;
+				const fromDiscoinValue = this.amount * newConversionRate;
 				const toCurrency = await currencies.findOne(this.toId);
 
 				if (toCurrency) {
 					// This rounds the value to 2 decimal places
-					this.payout = parseFloat((fromDiscoinValue * toCurrency.value).toFixed(2));
+					this.payout = parseFloat((fromDiscoinValue / toCurrency.value).toFixed(2));
 
 					// Decrease the `to` currency reserve
 					currencies
