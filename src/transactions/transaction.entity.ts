@@ -94,13 +94,13 @@ export class Transaction {
 	@Column()
 	@ApiProperty({
 		description: 'The Discord user ID of the user who initiated the transaction.',
-		maxLength: 16,
-		minLength: 22,
+		maxLength: 22,
+		minLength: 1,
 		example: '210024244766179329'
 	})
 	@IsDefined({groups: [CREATE]})
 	@IsOptional({groups: [UPDATE]})
-	@Length(16, 22, {always: true})
+	@Length(1, 22, {always: true})
 	@IsNumberString({always: true})
 	user!: string;
 
