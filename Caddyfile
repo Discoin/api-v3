@@ -6,6 +6,11 @@
 
 discoin.zws.im
 
+encode / {
+	gzip
+	zstd
+}
+
 reverse_proxy / {
 	to 127.0.0.1:3000
 	health_path /health
