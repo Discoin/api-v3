@@ -169,7 +169,7 @@ export class Transaction {
 				// Market cap for the `from` currency before this transaction was started
 				const marketCap = bot.currency.reserve * bot.currency.value;
 				const newConversionRate = marketCap / (bot.currency.reserve - this.amount);
-				const fromDiscoinValue = this.amount * newConversionRate;
+				const fromDiscoinValue = this.amount / newConversionRate;
 				const toCurrency = await currencies.findOne(this.toId);
 
 				if (toCurrency) {
