@@ -224,12 +224,12 @@
   dependencies:
     uuid "3.3.3"
 
-"@nestjsx/crud-request@^4.3.3":
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/@nestjsx/crud-request/-/crud-request-4.3.3.tgz#80bfe3bec3c5a614f6f33a1939086cbad148380b"
-  integrity sha512-O/tY+zY8jJEU8kdQrfHya9VJgnP79hNI80ZAqJRqTAEc+05a8g26YcB3rmrIUjV9CdKNSUVdpQZRTj+TB0EZjQ==
+"@nestjsx/crud-request@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@nestjsx/crud-request/-/crud-request-4.4.0.tgz#d940d27c46dc1ad2301f7e643fb002a92eea89e0"
+  integrity sha512-mF+1JTNIPFWJzQKo62ThNUbM9qaW1cbBpZWKEZ55M6c8Aww7XPNYN7OMQ7C6RKPtr9JU8vYugr87qLrrNcX0yA==
   dependencies:
-    "@nestjsx/util" "^4.3.3"
+    "@nestjsx/util" "^4.4.0"
     qs "^6.8.0"
 
 "@nestjsx/crud-typeorm@^4.4.0":
@@ -239,19 +239,19 @@
   dependencies:
     "@zmotivat0r/o0" "^1.0.2"
 
-"@nestjsx/crud@^4.3.3":
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/@nestjsx/crud/-/crud-4.3.3.tgz#f3a292825769cdb3eb7c7712007a1993b29a120d"
-  integrity sha512-pc+Fx0h46PQzf8pvVOHiy2ybhtjq3IgEYr092CgiUlSRedhvvBWj1I4glkaBLToSV7cYbA4KgTipvaoJtjV1Kg==
+"@nestjsx/crud@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@nestjsx/crud/-/crud-4.4.0.tgz#ff723fab25de2596a858eedcc1bffd921d478ce8"
+  integrity sha512-Zbn3yltYb04AlymW4UYi90XeuyM7SV7GtVBna13qFCQJaY7f6qZrOGRo2sW0TU1ayVmjxSLwiPf7Si9t0WbZ/A==
   dependencies:
-    "@nestjsx/crud-request" "^4.3.3"
-    "@nestjsx/util" "^4.3.3"
+    "@nestjsx/crud-request" "^4.4.0"
+    "@nestjsx/util" "^4.4.0"
     deepmerge "^3.2.0"
 
-"@nestjsx/util@^4.3.3":
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/@nestjsx/util/-/util-4.3.3.tgz#334ecc6caedbb88d8273b0ad2646347e93d3bd02"
-  integrity sha512-c3jVlvIAZQbTixZ6c0yD/DSh3ujrQrRpl6JojGG+0IjjBavYAF8FJk11LVTZ0F7ZC/cbKGg8jrNvfG++l8o+7A==
+"@nestjsx/util@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@nestjsx/util/-/util-4.4.0.tgz#88ba774da15fa32f03a475fd533015df5fc41d2f"
+  integrity sha512-tOkuCGHVYGBuAE3kKtdt7X5cwPkYHyucfFWrPRpEO4WIupdBtzSs72OROjv1a4s/zIwYYck1h9Wv01LM78HgtA==
 
 "@nodelib/fs.scandir@2.1.3":
   version "2.1.3"
