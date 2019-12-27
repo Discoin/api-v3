@@ -78,7 +78,7 @@ export class Transaction {
 	to!: Currency;
 
 	/** The amount in the `from` currency that this transcation is converting. */
-	@Column({type: 'number'})
+	@Column({type: 'numeric'})
 	@ApiProperty({
 		description: 'The amount in the `from` currency that this transcation is converting.',
 		example: 1000
