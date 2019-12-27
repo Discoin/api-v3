@@ -169,6 +169,7 @@ export class Transaction {
 				// Market cap for the `from` currency before this transaction was started
 				const marketCap = bot.currency.reserve * bot.currency.value;
 				const newConversionRate = marketCap / (bot.currency.reserve - this.amount);
+				// The value of the `from` currency in Discoin
 				const fromDiscoinValue = this.amount * newConversionRate;
 				const toCurrency = await currencies.findOne(this.toId);
 
@@ -179,7 +180,7 @@ export class Transaction {
 					// Remember to convert the `from` currency to the `from` currency amount
 					const difference = (this.amount * bot.currency.value) / toCurrency.value;
 
-					// Avoid making
+					// Avoid making the reserve run out
 					if (toCurrency.reserve - difference > 1) {
 						// This rounds the value to 2 decimal places
 
