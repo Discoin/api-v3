@@ -14,7 +14,7 @@
 		"@nestjs/swagger": "^4.1.2",
 		"@nestjs/terminus": "^6.5.5",
 		"@nestjs/typeorm": "^6.2.0",
-		"@nestjsx/crud": "^4.4.0",
+		"@nestjsx/crud": "^4.4.1",
 		"@nestjsx/crud-typeorm": "^4.4.0",
 		"class-transformer": "^0.2.3",
 		"class-validator": "^0.11.0",
