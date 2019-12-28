@@ -8,7 +8,7 @@ export const port = process.env.PORT ?? 3000;
 
 /** PostgreSQL settings. */
 export const postgres = {
-	DATABASE: process.env.POSTGRES_DATABASE_NAME,
+	DATABASE: process.env.POSTGRES_DB,
 	USER: process.env.POSTGRES_USER,
 	PORT: process.env.POSTGRES_PORT ? parseInt(process.env.POSTGRES_PORT, 10) : undefined,
 	PASSWORD: process.env.POSTGRES_PASSWORD,
