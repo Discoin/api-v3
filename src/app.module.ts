@@ -16,6 +16,7 @@ import {Transaction} from './transactions/transaction.entity';
 import {TransactionsModule} from './transactions/transactions.module';
 import {CurrenciesModule} from './currencies/currencies.module';
 import {postgres} from './util/config';
+import {join} from 'path';
 import {Currency} from './currencies/currency.entity';
 import {TerminusOptionsService} from './health-checks/terminus-options.service';
 
@@ -29,8 +30,9 @@ import {TerminusOptionsService} from './health-checks/terminus-options.service';
 			username: postgres.USER,
 			port: postgres.PORT,
 			entities: [Currency, Bot, Transaction],
+			migrations: [join(__dirname, 'db', 'migrations', '**', '*.migration.ts')],
 			ssl: postgres.SSL,
-			synchronize: true
+			synchronize: false
 		}),
 		TerminusModule.forRootAsync({
 			useClass: TerminusOptionsService,

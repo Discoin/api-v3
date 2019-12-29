@@ -24,7 +24,7 @@ export class Currency {
 	name!: string;
 
 	/** The value in Discoin this currency is worth. */
-	@Column({type: 'double precision'})
+	@Column({type: 'numeric'})
 	@IsDefined()
 	@ApiProperty({
 		description: 'The value in Discoin this currency is worth.',
