@@ -17,6 +17,7 @@ import {Currency} from 'src/currencies/currency.entity';
 import {Entities} from 'src/util/constants';
 import {BeforeInsert, Column, Entity, getRepository, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
 import {SignedInBot} from 'types/bot';
+import {roundDecimals} from 'src/util/decimal-format';
 
 const {CREATE, UPDATE} = CrudValidationGroups;
 
@@ -169,13 +170,13 @@ export class Transaction {
 					.createQueryBuilder()
 					.update()
 					// The transaction amount is already in the from currency so no need to convert
-					.set({reserve: () => `reserve + ${this.amount}`, value: parseFloat(newConversionRate.toFixed(4))})
+					.set({reserve: () => `reserve + ${this.amount}`, value: roundDecimals(newConversionRate, 4)})
 					.where('id = :id', {id: this.fromId})
 					.execute();
 
 				if (toCurrency) {
 					// Payout should never be less than 0
-					this.payout = Math.max(parseFloat((fromDiscoinValue / toCurrency.value).toFixed(2)), 0);
+					this.payout = Math.max(roundDecimals(fromDiscoinValue / toCurrency.value, 2), 0);
 
 					// Remember to convert the `from` currency to the `from` currency amount
 					const difference = (this.amount * bot.currency.value) / toCurrency.value;
@@ -191,7 +192,7 @@ export class Transaction {
 						currencies
 							.createQueryBuilder()
 							.update()
-							.set({reserve: () => `reserve - ${difference}`, value: parseFloat(newToRate.toFixed(4))})
+							.set({reserve: () => `reserve - ${difference}`, value: roundDecimals(newToRate, 4)})
 							.where('id = :id', {id: this.toId})
 							.execute();
 					}
