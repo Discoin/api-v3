@@ -157,21 +157,22 @@ export class Transaction {
 			if (bot?.token) {
 				this.fromId = bot.currency.id;
 
-				// Increase the `from` currency reserve
-				currencies
-					.createQueryBuilder()
-					.update()
-					// The transaction amount is already in the from currency so no need to convert
-					.set({reserve: () => `reserve + ${this.amount}`})
-					.where('id = :id', {id: this.fromId})
-					.execute();
-
 				// Market cap for the `from` currency before this transaction was started
 				const marketCapInDiscoin = bot.currency.reserve * bot.currency.value;
 				const newConversionRate = marketCapInDiscoin / (bot.currency.reserve - this.amount);
 				// The value of the `from` currency in Discoin
 				const fromDiscoinValue = this.amount * newConversionRate;
 				const toCurrency = await currencies.findOne(this.toId);
+
+				// Increase the `from` currency reserve, decrease value
+				currencies
+					.createQueryBuilder()
+					.update()
+					// The transaction amount is already in the from currency so no need to convert
+					.set({reserve: () => `reserve + ${this.amount}`})
+					.set({value: () => `${newConversionRate.toFixed(2)}`})
+					.where('id = :id', {id: this.fromId})
+					.execute();
 
 				if (toCurrency) {
 					// Payout should never be less than 0
@@ -184,11 +185,15 @@ export class Transaction {
 					if (toCurrency.reserve - difference > 1) {
 						// This rounds the value to 2 decimal places
 
-						// Decrease the `to` currency reserve
+						// to currency: new rate
+						const newToRate = toCurrency.reserve * toCurrency.value / (toCurrency.reserve - difference);
+
+						// Decrease the `to` currency reserve, increases value
 						currencies
 							.createQueryBuilder()
 							.update()
 							.set({reserve: () => `reserve - ${difference}`})
+							.set({value: () => `${newToRate.toFixed(2)}`})
 							.where('id = :id', {id: this.toId})
 							.execute();
 					}
