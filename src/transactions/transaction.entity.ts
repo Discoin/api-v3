@@ -169,7 +169,7 @@ export class Transaction {
 					.createQueryBuilder()
 					.update()
 					// The transaction amount is already in the from currency so no need to convert
-					.set({reserve: () => `reserve + ${this.amount}`, value: parseFloat(newConversionRate.toFixed(2))})
+					.set({reserve: () => `reserve + ${this.amount}`, value: parseFloat(newConversionRate.toFixed(4))})
 					.where('id = :id', {id: this.fromId})
 					.execute();
 
@@ -191,7 +191,7 @@ export class Transaction {
 						currencies
 							.createQueryBuilder()
 							.update()
-							.set({reserve: () => `reserve - ${difference}`, value: parseFloat(newToRate.toFixed(2))})
+							.set({reserve: () => `reserve - ${difference}`, value: parseFloat(newToRate.toFixed(4))})
 							.where('id = :id', {id: this.toId})
 							.execute();
 					}
