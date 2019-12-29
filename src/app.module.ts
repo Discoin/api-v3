@@ -32,7 +32,7 @@ import {TerminusOptionsService} from './health-checks/terminus-options.service';
 			entities: [Currency, Bot, Transaction],
 			migrations: [join(__dirname, 'db', 'migrations', '**', '*.migration.ts')],
 			ssl: postgres.SSL,
-			synchronize: false
+			synchronize: true
 		}),
 		TerminusModule.forRootAsync({
 			useClass: TerminusOptionsService,

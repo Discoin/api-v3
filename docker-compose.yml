@@ -35,3 +35,4 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 volumes:
   pgdata:
+    external: true
