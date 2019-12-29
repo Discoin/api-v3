@@ -5,7 +5,7 @@ networks:
     name: backend
 services:
   database:
-    image: postgres
+    image: postgres:12.1-alpine
     restart: always
     env_file: .env
     ports:
