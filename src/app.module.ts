@@ -1,3 +1,4 @@
+import {join} from 'path';
 import {Module} from '@nestjs/common';
 import {TypeOrmModule} from '@nestjs/typeorm';
 import {
@@ -16,7 +17,6 @@ import {Transaction} from './transactions/transaction.entity';
 import {TransactionsModule} from './transactions/transactions.module';
 import {CurrenciesModule} from './currencies/currencies.module';
 import {postgres} from './util/config';
-import {join} from 'path';
 import {Currency} from './currencies/currency.entity';
 import {TerminusOptionsService} from './health-checks/terminus-options.service';
 
