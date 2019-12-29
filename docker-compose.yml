@@ -11,7 +11,7 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - /srv/docker/postgresql:/var/lib/postgresql
+      - pgdata:/var/lib/postgresql
     networks:
       - backend
   # The actual server
@@ -33,3 +33,5 @@ services:
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+volumes:
+  pgdata:
