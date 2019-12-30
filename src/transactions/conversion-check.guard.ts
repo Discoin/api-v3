@@ -1,8 +1,8 @@
-import { Injectable, CanActivate, ExecutionContext, UnauthorizedException, BadRequestException, ForbiddenException } from "@nestjs/common";
-import { getRepository } from "typeorm";
-import { SignedInBot } from "types/bot";
-import { Currency } from "src/currencies/currency.entity";
-import { Transaction } from "./transaction.entity";
+import { Injectable, CanActivate, ExecutionContext, UnauthorizedException, BadRequestException, ForbiddenException } from '@nestjs/common';
+import { getRepository } from 'typeorm';
+import { SignedInBot } from 'types/bot';
+import { Currency } from 'src/currencies/currency.entity';
+import { Transaction } from './transaction.entity';
 
 @Injectable()
 export class ConversionCheckGuard implements CanActivate {
@@ -32,14 +32,14 @@ export class ConversionCheckGuard implements CanActivate {
         toCurrency.reserve
       ) {
         throw new ForbiddenException(
-          `You are not allowed to exhaust the reserve of ${body.toId}`
+          `You cannot exhaust the reserve of ${body.toId}`
         );
       } else {
         return true;
       }
     } else {
       // eslint-disable-next-line @typescript-eslint/quotes
-      throw new BadRequestException("You didn't provide a request body");
+      throw new BadRequestException('You did not provide a request body');
     }
   }
 }
