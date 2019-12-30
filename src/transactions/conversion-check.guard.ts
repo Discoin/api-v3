@@ -40,7 +40,6 @@ export class ConversionCheckGuard implements CanActivate {
 				return true;
 			}
 		} else {
-			// eslint-disable-next-line @typescript-eslint/quotes
 			throw new BadRequestException('You did not provide a request body');
 		}
 	}
