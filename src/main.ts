@@ -5,11 +5,12 @@ import {AppModule} from './app.module';
 import {port, sentryDSN} from './util/config';
 import {Entities} from './util/constants';
 
-if (sentryDSN) {
-	import('@sentry/node').then(Sentry => Sentry.init({dsn: sentryDSN}));
-}
-
 async function bootstrap(): Promise<void> {
+	if (sentryDSN) {
+		const Sentry = await import('@sentry/node');
+		Sentry.init({dsn: sentryDSN});
+	}
+
 	const app = await NestFactory.create(AppModule);
 
 	// Enable CORS headers
