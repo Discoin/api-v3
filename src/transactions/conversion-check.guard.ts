@@ -15,7 +15,7 @@ import {Transaction} from './transaction.entity';
 export class ConversionCheckGuard implements CanActivate {
 	async canActivate(context: ExecutionContext): Promise<boolean> {
 		const req: {
-			body?: Transaction;
+			body?: Transaction | unknown;
 			user?: SignedInBot;
 		} = context.switchToHttp().getRequest();
 		const signedInBot = req.user;
