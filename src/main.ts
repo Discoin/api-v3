@@ -2,8 +2,12 @@ import {NestFactory} from '@nestjs/core';
 import {DocumentBuilder, SwaggerModule} from '@nestjs/swagger';
 import {ValidationPipe} from '@nestjs/common';
 import {AppModule} from './app.module';
-import {port} from './util/config';
+import {port, sentryDSN} from './util/config';
 import {Entities} from './util/constants';
+
+if (sentryDSN) {
+	import('@sentry/node').then(Sentry => Sentry.init({dsn: sentryDSN}));
+}
 
 async function bootstrap(): Promise<void> {
 	const app = await NestFactory.create(AppModule);

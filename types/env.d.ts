@@ -13,5 +13,7 @@ declare namespace NodeJS {
 
 		readonly DISCORD_WEBHOOK_ID?: string;
 		readonly DISCORD_WEBHOOK_TOKEN?: string;
+
+		readonly SENTRY_DSN?: string;
 	}
 }

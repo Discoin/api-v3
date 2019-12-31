@@ -28,3 +28,6 @@ export const discordWebhook = {
 	/** Discord webhook token. */
 	token: process.env.DISCORD_WEBHOOK_TOKEN
 };
+
+/** DSN to use for Sentry error logging. */
+export const sentryDSN = process.env.SENTRY_DSN;
