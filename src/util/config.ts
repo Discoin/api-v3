@@ -20,3 +20,11 @@ export const postgres = {
 export const salt = process.env.SALT!;
 
 export const environment = process.env.NODE_ENV ?? Environments.PROD;
+
+/** The Discord webhook to use for notifications of transaction creations. */
+export const discordWebhook = {
+	/** Discord webhook ID. */
+	id: process.env.DISCORD_WEBHOOK_ID,
+	/** Discord webhook token. */
+	token: process.env.DISCORD_WEBHOOK_TOKEN
+};

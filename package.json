@@ -19,6 +19,7 @@
 		"class-transformer": "^0.2.3",
 		"class-validator": "^0.11.0",
 		"common-tags": "^1.8.0",
+		"discord.js": "discordjs/discord.js",
 		"dotenv": "^8.2.0",
 		"passport": "^0.4.0",
 		"passport-http-bearer": "^1.0.1",

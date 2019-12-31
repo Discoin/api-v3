@@ -18,6 +18,8 @@ import {Entities} from 'src/util/constants';
 import {BeforeInsert, Column, Entity, getRepository, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
 import {SignedInBot} from 'types/bot';
 import {roundDecimals} from 'src/util/decimal-format';
+import {WebhookClient, MessageEmbed, Message} from 'discord.js';
+import {discordWebhook} from 'src/util/config';
 
 const {CREATE, UPDATE} = CrudValidationGroups;
 
@@ -142,11 +144,32 @@ export class Transaction {
 	@Column({type: 'double precision'})
 	@ApiProperty({
 		readOnly: true,
-		example: 500,
+		example: 500.25,
 		description: 'How much the receiving bot should payout to the user who initiated the transaction.',
 		required: false
 	})
 	payout!: number;
+
+	async sendDiscordWebhook(): Promise<Message | undefined> {
+		if (discordWebhook.id && discordWebhook.token) {
+			const hook = new WebhookClient(discordWebhook.id, discordWebhook.token);
+
+			return hook.send(
+				new MessageEmbed({
+					title: this.id,
+					description: `${this.amount} ${this._bot!.currency.id} ➡️ ${this.payout} ${this.toId}`,
+					url: `https://dash.discoin.zws.im/#/transactions/${encodeURIComponent(this.id)}/show`,
+					color: 0x4caf50,
+					timestamp: this.timestamp,
+					author: {name: this.user},
+					fields: [
+						{name: 'From', value: `${this._bot!.currency.id} - ${this._bot!.currency.name}`},
+						{name: 'To', value: `${this.toId} - ${this.to.name}`}
+					]
+				})
+			);
+		}
+	}
 
 	@BeforeInsert()
 	async populateDynamicColumns(): Promise<void> {
@@ -154,6 +177,8 @@ export class Transaction {
 
 		if (this._bot) {
 			const bot = await getRepository(Bot).findOne({where: {token: this._bot.token}});
+
+			const writeOperations = [];
 
 			if (bot?.token) {
 				this.fromId = bot.currency.id;
@@ -166,13 +191,15 @@ export class Transaction {
 				const toCurrency = await currencies.findOne(this.toId);
 
 				// Increase the `from` currency reserve, decrease value
-				currencies
-					.createQueryBuilder()
-					.update()
-					// The transaction amount is already in the from currency so no need to convert
-					.set({reserve: () => `reserve + ${this.amount}`, value: roundDecimals(newConversionRate, 4)})
-					.where('id = :id', {id: this.fromId})
-					.execute();
+				writeOperations.push(
+					currencies
+						.createQueryBuilder()
+						.update()
+						// The transaction amount is already in the from currency so no need to convert
+						.set({reserve: () => `reserve + ${this.amount}`, value: roundDecimals(newConversionRate, 4)})
+						.where('id = :id', {id: this.fromId})
+						.execute()
+				);
 
 				if (toCurrency) {
 					// Payout should never be less than 0
@@ -189,13 +216,19 @@ export class Transaction {
 						const newToRate = (toCurrency.reserve * toCurrency.value) / (toCurrency.reserve - difference);
 
 						// Decrease the `to` currency reserve, increases value
-						currencies
-							.createQueryBuilder()
-							.update()
-							.set({reserve: () => `reserve - ${difference}`, value: roundDecimals(newToRate, 4)})
-							.where('id = :id', {id: this.toId})
-							.execute();
+						writeOperations.push(
+							currencies
+								.createQueryBuilder()
+								.update()
+								.set({reserve: () => `reserve - ${difference}`, value: roundDecimals(newToRate, 4)})
+								.where('id = :id', {id: this.toId})
+								.execute()
+						);
 					}
+
+					// We do this after all the fields are populated
+					// eslint-disable-next-line promise/prefer-await-to-then
+					Promise.all(writeOperations).then(async () => this.sendDiscordWebhook());
 				}
 			}
 		}
