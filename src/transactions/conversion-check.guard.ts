@@ -34,7 +34,7 @@ export class ConversionCheckGuard implements CanActivate {
 				);
 			} else if (!toCurrency) {
 				throw new BadRequestException(`Currency ${body.toId} does not exist`);
-			} else if ((body.amount * signedInBot.currency.value) / toCurrency.value >= toCurrency.reserve) {
+			} else if (body.amount && (body.amount * signedInBot.currency.value) / toCurrency.value >= toCurrency.reserve) {
 				throw new ForbiddenException(`You cannot exhaust the reserve of ${body.toId}`);
 			} else {
 				return true;
