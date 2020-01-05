@@ -3,10 +3,13 @@ networks:
   backend:
     driver: bridge
     name: backend
+  frontend:
+    driver: bridge
+    name: frontend
 services:
   database:
     image: postgres:12.1-alpine
-    restart: always
+    restart: unless-stopped
     env_file: .env
     ports:
       - '5432:5432'
@@ -17,7 +20,7 @@ services:
   # The actual server
   api:
     image: discoingroup/discoin
-    restart: always
+    restart: unless-stopped
     env_file: .env
     ports:
       - '3000:3000'
@@ -30,9 +33,25 @@ services:
   # Autoupdate images
   watchtower:
     image: v2tec/watchtower
-    restart: always
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+  load_balancer:
+    image: caddy/caddy:alpine
+    restart: unless-stopped
+    ports:
+      - '80:8080'
+      - '443:8443'
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    command: ['caddy', 'run', '--config', '/etc/caddy/Caddyfile', '--adapter', 'caddyfile']
+    depends_on:
+      - api
+    links:
+      - api
+    networks:
+      - frontend
+      - backend
 volumes:
   pgdata:
     external: true
