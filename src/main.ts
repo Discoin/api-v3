@@ -1,4 +1,5 @@
 // Always import Sqreen first
+// eslint-disable-next-line import/no-unassigned-import
 import 'sqreen';
 
 import {NestFactory} from '@nestjs/core';
