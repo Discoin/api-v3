@@ -6,7 +6,7 @@
 	},
 	"dependencies": {
 		"@godaddy/terminus": "^4.3.1",
-		"@nestjs/cli": "^6.12.9",
+		"@nestjs/cli": "^6.13.1",
 		"@nestjs/common": "^6.10.13",
 		"@nestjs/core": "^6.10.13",
 		"@nestjs/passport": "^6.1.1",
