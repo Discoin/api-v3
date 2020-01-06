@@ -44,6 +44,7 @@ services:
       - '443:8443'
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy:/var/lib/caddy/.local/share/caddy
     command: ['caddy', 'run', '--config', '/etc/caddy/Caddyfile', '--adapter', 'caddyfile']
     depends_on:
       - api
@@ -54,4 +55,7 @@ services:
       - backend
 volumes:
   pgdata:
+    external: true
+  # Where Caddy stores its certificates
+  caddy:
     external: true
