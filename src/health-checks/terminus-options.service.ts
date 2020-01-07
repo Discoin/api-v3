@@ -23,7 +23,7 @@ export class TerminusOptionsService implements TerminusOptionsFactory {
 		const healthEndpoint: TerminusEndpoint = {
 			url: '/health',
 			healthIndicators: [
-				async () => this._dns.pingCheck('network', 'https://1.1.1.1', {timeout: 3000}),
+				async () => this._dns.pingCheck('network', 'https://1.1.1.1', {timeout: 10_000}),
 				// This can fail when the app is just starting and the database connection is still initializing
 				async () => this._db.pingCheck('database', {timeout: 3000}),
 				// Fail if used memory <= 150MB
