@@ -192,10 +192,10 @@
     ts-morph "^4.0.0"
     typescript "3.4.5"
 
-"@nestjs/swagger@^4.1.2":
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-4.1.2.tgz#6a2b6e16431bb8b42d2948dd6ea0a95d7555e138"
-  integrity sha512-5cP4eenEvmjr5adu8FGug/WRTUpcHxo1EIuT0v4gN/I16DS6LZGSmW4IwcEGbQSzCqjI2K7sNSl7NpeisSFBpg==
+"@nestjs/swagger@^4.1.7":
+  version "4.1.7"
+  resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-4.1.7.tgz#f4d4d58de757fa04f93acbc0299aad9c54f50b29"
+  integrity sha512-IIwy4YHHfybIvp7rYK3HhfFE+IpjkbQ5Ityfmzn4vPwnwbxmg3au1CNNQV7BRYQ6dPortuTGrYLEg9iqUIGLXA==
   dependencies:
     lodash "4.17.15"
     path-to-regexp "3.2.0"
