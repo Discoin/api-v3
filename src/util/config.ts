@@ -4,7 +4,7 @@ import {Environments} from './constants';
 
 config({path: join(__dirname, '..', '..', '.env')});
 
-export const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+export const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 80;
 
 /** PostgreSQL settings. */
 export const postgres = {

@@ -58,17 +58,17 @@ LABEL maintainer 'Jonah Snider <jonah@jonah.pw> (jonah.pw)'
 # Same workdir as the build stage
 WORKDIR /usr/src/discoin
 
-ENV NODE_ENV=production PORT=3000
+ENV NODE_ENV=production PORT=80
 
 # Change this number if you change the port above
-EXPOSE 3000
+EXPOSE 80
 
 # Start the program and try doing a health check for 12s after waiting 15s for the program to sart
 # Repeat this every 5m
 # If it fails 3 times this instance is declared unhealthy
 HEALTHCHECK --interval=5m --timeout=12s --start-period=15s \
 	# Change the port number below if you change the port above
-	CMD curl -X GET -f http://localhost:3000/health || exit 1
+	CMD curl -X GET -f http://localhost:80/health || exit 1
 
 # Copy compiled TypeScript
 COPY --from=builder /usr/src/builder/tsc_output ./tsc_output
