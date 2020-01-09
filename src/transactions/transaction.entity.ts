@@ -89,8 +89,8 @@ export class Transaction {
 	@IsDefined({groups: [CREATE]})
 	@IsOptional({groups: [UPDATE]})
 	@IsNumber({}, {always: true})
-	// The largest number representable in 15 digits (AKA the max value for Currency.reserve before the DB dies)
-	@Max(999_999_999_999_999, {always: true})
+	// This number must always be less than or equal to 15 digits or the DB will die due to `double precision` limitations
+	@Max(1_000_000_000, {always: true})
 	@IsPositive({always: true})
 	amount!: number;
 
