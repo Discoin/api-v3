@@ -183,10 +183,10 @@
     "@angular-devkit/schematics" "7.3.8"
     fs-extra "8.1.0"
 
-"@nestjs/swagger@^4.1.7":
-  version "4.1.7"
-  resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-4.1.7.tgz#f4d4d58de757fa04f93acbc0299aad9c54f50b29"
-  integrity sha512-IIwy4YHHfybIvp7rYK3HhfFE+IpjkbQ5Ityfmzn4vPwnwbxmg3au1CNNQV7BRYQ6dPortuTGrYLEg9iqUIGLXA==
+"@nestjs/swagger@^4.1.9":
+  version "4.1.9"
+  resolved "https://registry.yarnpkg.com/@nestjs/swagger/-/swagger-4.1.9.tgz#dea6d893604fbde12beba7539b1f0e180ed3730b"
+  integrity sha512-wCczUZnYrlV1beirwE6/n/tNAwNs9v4sN0RZpMK8j75NCNBQ03ca9r9xa0cIITr7P1AAemb/vWdB5y93JKyGQw==
   dependencies:
     lodash "4.17.15"
     path-to-regexp "3.2.0"
