@@ -24,7 +24,6 @@ services:
     restart: unless-stopped
     env_file: .env
     labels:
-    labels:
       - "traefik.enable=true"
       - "traefik.http.routers.api.rule=Host(`api.localhost`)"
       - "traefik.http.routers.api.entrypoints=web"
