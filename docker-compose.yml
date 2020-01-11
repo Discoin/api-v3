@@ -24,9 +24,9 @@ services:
     restart: unless-stopped
     env_file: .env
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.api.rule=Host(`api.localhost`)"
-      - "traefik.http.routers.api.entrypoints=web"
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.api.rule=Host(`api.localhost`)'
+      - 'traefik.http.routers.api.entrypoints=web'
       - 'traefik.http.middlewares.api.compress=true'
     depends_on:
       - database
