@@ -63,6 +63,22 @@ services:
     networks:
       - frontend
       - backend
+  cachet:
+    image: cachethq/docker
+    restart: unless-stopped
+    env_file: cachet.env
+    ports:
+      - '8000:8000'
+    networks:
+      - frontend
+      - backend
+    links:
+      - database
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.cachet.rule=Host(`cachet.localhost`)'
+      - 'traefik.http.routers.cachet.entrypoints=web'
+      - 'traefik.http.middlewares.cachet.compress=true'
 volumes:
   pgdata:
     external: true
