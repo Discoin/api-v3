@@ -37,12 +37,11 @@ export class Currency {
 	value!: number;
 
 	/** The reserve available of this currency. */
-	@Column({type: 'double precision'})
+	@Column({type: 'numeric'})
 	@IsDefined()
 	@ApiProperty({
 		description: 'The reserve available of this currency.',
 		example: 1000000,
-		default: 1000000,
 		exclusiveMinimum: true,
 		minimum: 0
 	})
