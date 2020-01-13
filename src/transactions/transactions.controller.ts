@@ -11,8 +11,7 @@ import {ConversionCheckGuard} from './conversion-check.guard';
 import {TransactionUpdateGuard} from './transaction-update.guard';
 
 const currencyJoinOptions = {
-	eager: true,
-	exclude: ['value', 'reserve']
+	eager: true
 };
 
 @Crud({
