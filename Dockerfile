@@ -24,7 +24,7 @@ ENV NODE_ENV=production
 
 RUN apk update \
 	&& apk upgrade \
-	&& apk add yarn curl
+	&& apk add yarn
 
 # Install dependencies
 COPY package.json yarn.lock ./
@@ -69,6 +69,10 @@ EXPOSE 80
 HEALTHCHECK --interval=12s --timeout=12s --start-period=15s \
 	# Change the port number below if you change the port above
 	CMD curl -X GET --fail http://localhost:80/health || exit 1
+
+RUN apk update \
+	&& apk upgrade \
+	&& apk add yarn curl
 
 # Copy compiled TypeScript
 COPY --from=builder /usr/src/builder/tsc_output ./tsc_output
