@@ -24,7 +24,7 @@ ENV NODE_ENV=production
 
 RUN apk update \
 	&& apk upgrade \
-	&& apk add yarn
+	&& apk add yarn curl
 
 # Install dependencies
 COPY package.json yarn.lock ./
