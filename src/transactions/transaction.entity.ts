@@ -202,6 +202,9 @@ export class Transaction {
 						.execute()
 				);
 
+				// Set this just to be extra-extra-safe that payout isn't undefined
+				this.payout = 0;
+
 				if (toCurrency) {
 					// Payout should never be less than 0
 					this.payout = Math.max(roundDecimals(fromDiscoinValue / toCurrency.value, 2), 0);
@@ -213,8 +216,8 @@ export class Transaction {
 					if (toCurrency.reserve - difference > 1) {
 						// This rounds the value to 2 decimal places
 						const newReserve = toCurrency.reserve - difference,
-						// To currency: new rate
-						      newToRate = (toCurrency.reserve * toCurrency.value) / (toCurrency.reserve - difference);
+							// To currency: new rate
+							newToRate = (toCurrency.reserve * toCurrency.value) / (toCurrency.reserve - difference);
 
 						// Decrease the `to` currency reserve, increases value
 						writeOperations.push(
