@@ -215,9 +215,9 @@ export class Transaction {
 					// Avoid making the reserve run out
 					if (toCurrency.reserve - difference > 1) {
 						// This rounds the value to 2 decimal places
-						const newReserve = toCurrency.reserve - difference,
-							// To currency: new rate
-							newToRate = (toCurrency.reserve * toCurrency.value) / (toCurrency.reserve - difference);
+						const newReserve = toCurrency.reserve - difference;
+						// To currency: new rate
+						const newToRate = (toCurrency.reserve * toCurrency.value) / (toCurrency.reserve - difference);
 
 						// Decrease the `to` currency reserve, increases value
 						writeOperations.push(
