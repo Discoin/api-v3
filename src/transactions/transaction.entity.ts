@@ -212,16 +212,16 @@ export class Transaction {
 					// Avoid making the reserve run out
 					if (toCurrency.reserve - difference > 1) {
 						// This rounds the value to 2 decimal places
-
+						const newReserve = toCurrency.reserve - difference,
 						// To currency: new rate
-						const newToRate = (toCurrency.reserve * toCurrency.value) / (toCurrency.reserve - difference);
+						      newToRate = (toCurrency.reserve * toCurrency.value) / (toCurrency.reserve - difference);
 
 						// Decrease the `to` currency reserve, increases value
 						writeOperations.push(
 							currencies
 								.createQueryBuilder()
 								.update()
-								.set({reserve: () => `reserve - ${difference}`, value: roundDecimals(newToRate, 4)})
+								.set({reserve: () => roundDecimals(newReserve, 2), value: roundDecimals(newToRate, 4)})
 								.where('id = :id', {id: this.toId})
 								.execute()
 						);
