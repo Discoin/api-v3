@@ -221,7 +221,7 @@ export class Transaction {
 							currencies
 								.createQueryBuilder()
 								.update()
-								.set({reserve: () => roundDecimals(newReserve, 2), value: roundDecimals(newToRate, 4)})
+								.set({reserve: roundDecimals(newReserve, 2), value: roundDecimals(newToRate, 4)})
 								.where('id = :id', {id: this.toId})
 								.execute()
 						);
