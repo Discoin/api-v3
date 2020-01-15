@@ -180,5 +180,6 @@ $RECYCLE.BIN/
 # TypeScript compiler output
 tsc_output
 
-# PostgreSQL config
-postgres.env
+# Environment variables
+cachet.env
+grafana.env
