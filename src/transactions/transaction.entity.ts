@@ -222,23 +222,25 @@ export class Transaction {
 				const fromCurrency = await currencies.findOne(this.fromId);
 				const toCurrency = await currencies.findOne(this.toId);
 
-				const newFromCurrencyData = {
-					reserve: roundDecimals((fromCurrency?.reserve ?? 0) + this.amount, 2),
-					value: roundDecimals(newConversionRate, 4)
-				};
+				if (fromCurrency) {
+					const newFromCurrencyData = {
+						reserve: roundDecimals(fromCurrency.reserve + this.amount, 2),
+						value: roundDecimals(newConversionRate, 4)
+					};
 
-				this.updateInflux({timestamp: this.timestamp, currencyID: this.fromId, ...newFromCurrencyData});
+					this.updateInflux({timestamp: this.timestamp, currencyID: this.fromId, ...newFromCurrencyData});
 
-				// Increase the `from` currency reserve, decrease value
-				writeOperations.push(
-					currencies
-						.createQueryBuilder()
-						.update()
-						// The transaction amount is already in the from currency so no need to convert
-						.set(newFromCurrencyData)
-						.where('id = :id', {id: this.fromId})
-						.execute()
-				);
+					// Increase the `from` currency reserve, decrease value
+					writeOperations.push(
+						currencies
+							.createQueryBuilder()
+							.update()
+							// The transaction amount is already in the from currency so no need to convert
+							.set(newFromCurrencyData)
+							.where('id = :id', {id: this.fromId})
+							.execute()
+					);
+				}
 
 				// Set this just to be extra-extra-safe that payout isn't undefined
 				this.payout = 0;
