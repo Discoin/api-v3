@@ -8,7 +8,7 @@
 		"module": "commonjs",
 		"outDir": "./tsc_output",
 		"removeComments": true,
-		"sourceMap": true,
+		"inlineSourceMap": true,
 		"strict": true,
 		"target": "es2017"
 	},
