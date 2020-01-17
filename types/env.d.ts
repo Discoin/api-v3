@@ -15,5 +15,11 @@ declare namespace NodeJS {
 		readonly DISCORD_WEBHOOK_TOKEN?: string;
 
 		readonly SENTRY_DSN?: string;
+
+		readonly SQREEN_APP_NAME?: string;
+		readonly SQREEN_TOKEN?: string;
+
+		readonly INFLUX_DB_USERNAME?: string;
+		readonly INFLUX_DB_PASSWORD?: string;
 	}
 }

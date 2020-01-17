@@ -20,6 +20,8 @@ import {SignedInBot} from 'types/bot';
 import {roundDecimals} from 'src/util/decimal-format';
 import {WebhookClient, MessageEmbed, Message} from 'discord.js';
 import {discordWebhook} from 'src/util/config';
+import {influx, Measurements, Tags} from 'src/util/influxdb';
+import {IPoint} from 'influx';
 
 const {CREATE, UPDATE} = CrudValidationGroups;
 
@@ -180,6 +182,26 @@ export class Transaction {
 		}
 	}
 
+	/**
+	 * Add a measurement to InfluxDB.
+	 * @param data The data to use to update InfluxDB with
+	 */
+	async updateInflux(data: {
+		currencyID: string;
+		reserve: number;
+		value: number;
+		timestamp: IPoint['timestamp'];
+	}): Promise<void> {
+		return influx.writePoints([
+			{
+				measurement: Measurements.CURRENCY,
+				timestamp: data.timestamp,
+				tags: {[Tags.CURRENCY_ID]: data.currencyID},
+				fields: {reserve: data.reserve, value: data.value}
+			}
+		]);
+	}
+
 	@BeforeInsert()
 	async populateDynamicColumns(): Promise<void> {
 		const currencies = getRepository(Currency);
@@ -200,13 +222,20 @@ export class Transaction {
 				const fromCurrency = await currencies.findOne(this.fromId);
 				const toCurrency = await currencies.findOne(this.toId);
 
+				const newFromCurrencyData = {
+					reserve: roundDecimals((fromCurrency?.reserve ?? 0) + this.amount, 2),
+					value: roundDecimals(newConversionRate, 4)
+				};
+
+				this.updateInflux({timestamp: this.timestamp, currencyID: this.fromId, ...newFromCurrencyData});
+
 				// Increase the `from` currency reserve, decrease value
 				writeOperations.push(
 					currencies
 						.createQueryBuilder()
 						.update()
 						// The transaction amount is already in the from currency so no need to convert
-						.set({reserve: () => `reserve + ${this.amount}`, value: roundDecimals(newConversionRate, 4)})
+						.set(newFromCurrencyData)
 						.where('id = :id', {id: this.fromId})
 						.execute()
 				);
@@ -228,12 +257,16 @@ export class Transaction {
 						// To currency: new rate
 						const newToRate = (toCurrency.reserve * toCurrency.value) / (toCurrency.reserve - difference);
 
+						const newToCurrencyData = {reserve: roundDecimals(newReserve, 2), value: roundDecimals(newToRate, 4)};
+
+						this.updateInflux({timestamp: this.timestamp, currencyID: this.toId, ...newToCurrencyData});
+
 						// Decrease the `to` currency reserve, increases value
 						writeOperations.push(
 							currencies
 								.createQueryBuilder()
 								.update()
-								.set({reserve: roundDecimals(newReserve, 2), value: roundDecimals(newToRate, 4)})
+								.set(newToCurrencyData)
 								.where('id = :id', {id: this.toId})
 								.execute()
 						);

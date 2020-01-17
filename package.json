@@ -23,6 +23,7 @@
 		"common-tags": "^1.8.0",
 		"discord.js": "discordjs/discord.js",
 		"dotenv": "^8.2.0",
+		"influx": "^5.5.1",
 		"passport": "^0.4.0",
 		"passport-http-bearer": "^1.0.1",
 		"pg": "^7.17.1",

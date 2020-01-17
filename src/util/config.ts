@@ -31,3 +31,10 @@ export const discordWebhook = {
 
 /** DSN to use for Sentry error logging. */
 export const sentryDSN = process.env.SENTRY_DSN;
+
+/** InfluxDB connection settings */
+export const influxDB = {
+	username: process.env.INFLUX_DB_USERNAME ?? 'admin',
+	password: process.env.INFLUX_DB_PASSWORD,
+	database: 'discion'
+};
