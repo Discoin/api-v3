@@ -52,11 +52,14 @@ services:
       - backend
     depends_on:
       - influxdb
+    ports:
+      - '3000:3000'
     links:
       - influxdb
+      - database
     labels:
       - 'traefik.enable=true'
-      - 'traefik.http.routers.grafana.rule=PathPrefix(`/grafana`)'
+      - 'traefik.http.routers.grafana.rule=Path(`/grafana`) || PathPrefix(`/grafana/`)'
       - 'traefik.http.routers.grafana.entrypoints=web'
       - 'traefik.http.middlewares.grafana-compress.compress=true'
       - 'traefik.http.services.grafana.loadbalancer.server.port=3000'
