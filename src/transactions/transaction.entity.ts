@@ -151,21 +151,29 @@ export class Transaction {
 	})
 	payout!: number;
 
-	async sendDiscordWebhook(): Promise<Message | undefined> {
+	async sendDiscordWebhook(options: {
+		timestamp: Date;
+		amount: number;
+		payout: number;
+		to: {id: string; name: string};
+		from: {id: string; name: string};
+		id: string;
+		user: string;
+	}): Promise<Message | undefined> {
 		if (discordWebhook.id && discordWebhook.token) {
 			const hook = new WebhookClient(discordWebhook.id, discordWebhook.token);
 
 			return hook.send(
 				new MessageEmbed({
-					title: this.id,
-					description: `${this.amount} ${this._bot!.currency.id} ➡️ ${this.payout} ${this.toId}`,
+					title: options.id,
+					description: `${options.amount} ${options.from.id} ➡️ ${options.payout} ${options.to.id}`,
 					url: `https://dash.discoin.zws.im/#/transactions/${encodeURIComponent(this.id)}/show`,
 					color: 0x4caf50,
-					timestamp: this.timestamp,
-					author: {name: this.user},
+					timestamp: options.timestamp,
+					author: {name: options.user},
 					fields: [
-						{name: 'From', value: `${this._bot!.currency.id} - ${this._bot!.currency.name}`},
-						{name: 'To', value: `${this.toId} - ${this.to.name}`}
+						{name: 'From', value: `${options.from.id} - ${options.from.name}`},
+						{name: 'To', value: `${options.to.id} - ${options.to.name}`}
 					]
 				})
 			);
@@ -189,6 +197,7 @@ export class Transaction {
 				const newConversionRate = marketCapInDiscoin / (bot.currency.reserve + this.amount);
 				// The value of the `from` currency in Discoin
 				const fromDiscoinValue = this.amount * newConversionRate;
+				const fromCurrency = await currencies.findOne(this.fromId);
 				const toCurrency = await currencies.findOne(this.toId);
 
 				// Increase the `from` currency reserve, decrease value
@@ -205,7 +214,7 @@ export class Transaction {
 				// Set this just to be extra-extra-safe that payout isn't undefined
 				this.payout = 0;
 
-				if (toCurrency) {
+				if (toCurrency && fromCurrency) {
 					// Payout should never be less than 0
 					this.payout = Math.max(roundDecimals(fromDiscoinValue / toCurrency.value, 2), 0);
 
@@ -232,7 +241,17 @@ export class Transaction {
 
 					// We do this after all the fields are populated
 					// eslint-disable-next-line promise/prefer-await-to-then
-					Promise.all(writeOperations).then(async () => this.sendDiscordWebhook());
+					Promise.all(writeOperations).then(async () =>
+						this.sendDiscordWebhook({
+							amount: this.amount,
+							payout: this.payout,
+							id: this.id,
+							timestamp: this.timestamp,
+							from: {id: this.fromId, name: fromCurrency.name},
+							user: this.user,
+							to: {id: this.toId, name: toCurrency.name}
+						})
+					);
 				}
 			}
 		}
