@@ -1,16 +1,6 @@
 import {ApiProperty} from '@nestjs/swagger';
 import {CrudValidationGroups} from '@nestjsx/crud';
-import {
-	IsBoolean,
-	IsDefined,
-	IsNotEmpty,
-	IsNumber,
-	IsNumberString,
-	IsOptional,
-	IsPositive,
-	Length,
-	Max
-} from 'class-validator';
+import {IsBoolean, IsDefined, IsNotEmpty, IsNumberString, IsOptional, IsPositive, Length, Max} from 'class-validator';
 import {stripIndents} from 'common-tags';
 import {Bot} from 'src/bots/bot.entity';
 import {Currency} from 'src/currencies/currency.entity';
@@ -90,11 +80,10 @@ export class Transaction {
 	})
 	@IsDefined({groups: [CREATE]})
 	@IsOptional({groups: [UPDATE]})
-	@IsNumber({}, {always: true})
-	// This number must always be less than or equal to 15 digits or the DB will die due to `double precision` limitations
+	@IsNumberString({always: true})
 	@Max(1_000_000_000, {always: true})
 	@IsPositive({always: true})
-	amount!: number;
+	amount!: string;
 
 	/** The Discord user ID of the user who initiated the transaction. */
 	@Column()
@@ -168,7 +157,9 @@ export class Transaction {
 			return hook.send(
 				new MessageEmbed({
 					title: options.id,
-					description: `${options.amount} ${options.from.id} ➡️ ${options.payout} ${options.to.id}`,
+					description: `${options.amount.toLocaleString()} ${options.from.id} ➡️ ${options.payout.toLocaleString()} ${
+						options.to.id
+					}`,
 					url: `https://dash.discoin.zws.im/#/transactions/${encodeURIComponent(this.id)}/show`,
 					color: 0x4caf50,
 					timestamp: options.timestamp,
@@ -215,16 +206,16 @@ export class Transaction {
 				this.fromId = bot.currency.id;
 
 				// Market cap for the `from` currency before this transaction was started
-				const marketCapInDiscoin = bot.currency.reserve * bot.currency.value;
-				const newConversionRate = marketCapInDiscoin / (bot.currency.reserve + this.amount);
+				const marketCapInDiscoin = parseFloat(bot.currency.reserve) * bot.currency.value;
+				const newConversionRate = marketCapInDiscoin / (parseFloat(bot.currency.reserve) + parseFloat(this.amount));
 				// The value of the `from` currency in Discoin
-				const fromDiscoinValue = this.amount * newConversionRate;
+				const fromDiscoinValue = parseFloat(this.amount) * newConversionRate;
 				const fromCurrency = await currencies.findOne(this.fromId);
 				const toCurrency = await currencies.findOne(this.toId);
 
 				if (fromCurrency) {
 					const newFromCurrencyData = {
-						reserve: roundDecimals(fromCurrency.reserve + this.amount, 2),
+						reserve: roundDecimals(parseFloat(fromCurrency.reserve) + parseFloat(this.amount), 2),
 						value: roundDecimals(newConversionRate, 4)
 					};
 
@@ -236,7 +227,7 @@ export class Transaction {
 							.createQueryBuilder()
 							.update()
 							// The transaction amount is already in the from currency so no need to convert
-							.set(newFromCurrencyData)
+							.set({...newFromCurrencyData, reserve: newFromCurrencyData.reserve.toString()})
 							.where('id = :id', {id: this.fromId})
 							.execute()
 					);
@@ -250,14 +241,15 @@ export class Transaction {
 					this.payout = Math.max(roundDecimals(fromDiscoinValue / toCurrency.value, 2), 0);
 
 					// Remember to convert the `from` currency to the `from` currency amount
-					const difference = (this.amount * bot.currency.value) / toCurrency.value;
+					const difference = (parseFloat(this.amount) * bot.currency.value) / toCurrency.value;
 
 					// Avoid making the reserve run out
-					if (toCurrency.reserve - difference > 1) {
+					if (parseFloat(toCurrency.reserve) - difference > 1) {
 						// This rounds the value to 2 decimal places
-						const newReserve = toCurrency.reserve - difference;
+						const newReserve = parseFloat(toCurrency.reserve) - difference;
 						// To currency: new rate
-						const newToRate = (toCurrency.reserve * toCurrency.value) / (toCurrency.reserve - difference);
+						const newToRate =
+							(parseFloat(toCurrency.reserve) * toCurrency.value) / (parseFloat(toCurrency.reserve) - difference);
 
 						const newToCurrencyData = {reserve: roundDecimals(newReserve, 2), value: roundDecimals(newToRate, 4)};
 
@@ -268,7 +260,7 @@ export class Transaction {
 							currencies
 								.createQueryBuilder()
 								.update()
-								.set(newToCurrencyData)
+								.set({...newToCurrencyData, reserve: newToCurrencyData.reserve.toString()})
 								.where('id = :id', {id: this.toId})
 								.execute()
 						);
@@ -278,7 +270,7 @@ export class Transaction {
 					// eslint-disable-next-line promise/prefer-await-to-then
 					Promise.all(writeOperations).then(async () =>
 						this.sendDiscordWebhook({
-							amount: this.amount,
+							amount: parseFloat(this.amount),
 							payout: this.payout,
 							id: this.id,
 							timestamp: this.timestamp,
