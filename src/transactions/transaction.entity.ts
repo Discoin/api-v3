@@ -1,6 +1,16 @@
 import {ApiProperty} from '@nestjs/swagger';
 import {CrudValidationGroups} from '@nestjsx/crud';
-import {IsBoolean, IsDefined, IsNotEmpty, IsNumberString, IsOptional, IsPositive, Length, Max} from 'class-validator';
+import {
+	IsBoolean,
+	IsDefined,
+	IsNotEmpty,
+	IsNumberString,
+	IsNumber,
+	IsOptional,
+	IsPositive,
+	Length,
+	Max
+} from 'class-validator';
 import {stripIndents} from 'common-tags';
 import {Bot} from 'src/bots/bot.entity';
 import {Currency} from 'src/currencies/currency.entity';
@@ -80,7 +90,7 @@ export class Transaction {
 	})
 	@IsDefined({groups: [CREATE]})
 	@IsOptional({groups: [UPDATE]})
-	@IsNumberString({always: true})
+	@IsNumber({}, {always: true})
 	@Max(1_000_000_000, {always: true})
 	@IsPositive({always: true})
 	amount!: string;
