@@ -52,8 +52,8 @@ services:
       - backend
     depends_on:
       - influxdb
-    ports:
-      - '3000:3000'
+    expose:
+      - '3000'
     links:
       - influxdb
       - database
