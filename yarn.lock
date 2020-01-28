@@ -157,10 +157,10 @@
     express "4.17.1"
     multer "1.4.2"
 
-"@nestjs/platform-express@^6.11.1":
-  version "6.11.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-6.11.1.tgz#4b263c6a1e9e1319eccaedd060e060eb65f0e3cb"
-  integrity sha512-drU+T4uHpyysIBlDSu3qrgRCCRq/h0VYYM0wvJll2Ki++b7xcIoasZSU+cYKurdXRi7x6NNdFHbo8nozXoi7iQ==
+"@nestjs/platform-express@^6.11.3":
+  version "6.11.3"
+  resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-6.11.3.tgz#f057b2a078300c13109a86720cc71aaa5043c25e"
+  integrity sha512-l5Ixh+/sFziD7ejLMHSxb6J+CGIJz/1dBH6FJ6PlbmhMshqYSMl7Vpxg2lAHkwo7+SYoz4DUQGuGiRqhVBGtww==
   dependencies:
     body-parser "1.19.0"
     cors "2.8.5"
