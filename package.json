@@ -11,7 +11,7 @@
 		"@nestjs/core": "^6.11.5",
 		"@nestjs/passport": "^6.1.1",
 		"@nestjs/platform-express": "^6.11.5",
-		"@nestjs/swagger": "^4.2.4",
+		"@nestjs/swagger": "^4.2.6",
 		"@nestjs/terminus": "^6.5.5",
 		"@nestjs/typeorm": "^6.2.0",
 		"@nestjsx/crud": "^4.4.1",
