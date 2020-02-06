@@ -8,6 +8,7 @@ import {Entities} from 'src/util/constants';
 import {TransactionRecipientGuard} from 'src/auth/transaction-recipient.guard';
 import {BotAPITokenInterceptor} from './bot-from-token.interceptor';
 import {ConversionCheckGuard} from './conversion-check.guard';
+import {ReserveCheckGuard} from './reserve-check.guard';
 import {TransactionUpdateGuard} from './transaction-update.guard';
 
 const currencyJoinOptions = {
@@ -29,11 +30,11 @@ const currencyJoinOptions = {
 	routes: {
 		only: ['createManyBase', 'createOneBase', 'getManyBase', 'getOneBase', 'updateOneBase'],
 		createManyBase: {
-			decorators: [UseGuards(AuthGuard('bearer'), ConversionCheckGuard, TransactionUpdateGuard)],
+			decorators: [UseGuards(AuthGuard('bearer'), ConversionCheckGuard, TransactionUpdateGuard, ReserveCheckGuard)],
 			interceptors: [BotAPITokenInterceptor]
 		},
 		createOneBase: {
-			decorators: [UseGuards(AuthGuard('bearer'), ConversionCheckGuard, TransactionUpdateGuard)],
+			decorators: [UseGuards(AuthGuard('bearer'), ConversionCheckGuard, TransactionUpdateGuard, ReserveCheckGuard)],
 			interceptors: [BotAPITokenInterceptor]
 		},
 		updateOneBase: {
