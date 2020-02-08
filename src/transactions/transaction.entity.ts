@@ -274,6 +274,8 @@ export class Transaction {
 								.where('id = :id', {id: this.toId})
 								.execute()
 						);
+					} else {
+						throw new BadRequestException(`This exchange would rush ${this.toId}'s reserve.`);
 					}
 
 					// We do this after all the fields are populated
