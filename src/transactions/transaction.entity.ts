@@ -1,16 +1,6 @@
 import {ApiProperty} from '@nestjs/swagger';
 import {CrudValidationGroups} from '@nestjsx/crud';
-import {
-	IsBoolean,
-	IsDefined,
-	IsNotEmpty,
-	IsNumberString,
-	IsNumber,
-	IsOptional,
-	IsPositive,
-	Length,
-	Max
-} from 'class-validator';
+import {IsBoolean, IsDefined, IsNotEmpty, IsNumberString, IsNumber, IsOptional, IsPositive, Length, Max} from 'class-validator';
 import {stripIndents} from 'common-tags';
 import {Bot} from 'src/bots/bot.entity';
 import {Currency} from 'src/currencies/currency.entity';
@@ -167,9 +157,7 @@ export class Transaction {
 			return hook.send(
 				new MessageEmbed({
 					title: options.id,
-					description: `${options.amount.toLocaleString()} ${options.from.id} ➡️ ${options.payout.toLocaleString()} ${
-						options.to.id
-					}`,
+					description: `${options.amount.toLocaleString()} ${options.from.id} ➡️ ${options.payout.toLocaleString()} ${options.to.id}`,
 					url: `https://dash.discoin.zws.im/#/transactions/${encodeURIComponent(this.id)}/show`,
 					color: 0x4caf50,
 					timestamp: options.timestamp,
@@ -187,12 +175,7 @@ export class Transaction {
 	 * Add a measurement to InfluxDB.
 	 * @param data The data to use to update InfluxDB with
 	 */
-	async updateInflux(data: {
-		currencyID: string;
-		reserve: number;
-		value: number;
-		timestamp: IPoint['timestamp'];
-	}): Promise<void> {
+	async updateInflux(data: {currencyID: string; reserve: number; value: number; timestamp: IPoint['timestamp']}): Promise<void> {
 		return influx.writePoints([
 			{
 				measurement: Measurements.CURRENCY,
@@ -258,8 +241,7 @@ export class Transaction {
 						// This rounds the value to 2 decimal places
 						const newReserve = parseFloat(toCurrency.reserve) - difference;
 						// To currency: new rate
-						const newToRate =
-							(parseFloat(toCurrency.reserve) * toCurrency.value) / (parseFloat(toCurrency.reserve) - difference);
+						const newToRate = (parseFloat(toCurrency.reserve) * toCurrency.value) / (parseFloat(toCurrency.reserve) - difference);
 
 						const newToCurrencyData = {reserve: roundDecimals(newReserve, 2), value: roundDecimals(newToRate, 4)};
 
