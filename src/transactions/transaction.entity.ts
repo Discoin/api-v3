@@ -275,11 +275,11 @@ export class Transaction {
 					const zeroesCheck = /(?<=.)0+(?=[1-9])/;
 					// Prevent rounding from making newToRate 0
 					const newToRateString = newToRate.toString();
-					const newToRateZeroesCheck = newToRateString.match(zeroesCheck);
+					const newToRateZeroesCheck = zeroesCheck.exec(newToRateString);
 					const newToRateZeroes = newToRateZeroesCheck ? newToRateZeroesCheck[0].length : 0;
 					// Prevent rounding from making reserves 0
 					const newReserveString = newReserve.toString();
-					const newReserveZeroesCheck = newReserveString.match(zeroesCheck);
+					const newReserveZeroesCheck = zeroesCheck.exec(newReserveString);
 					const newReserveZeroes = newReserveZeroesCheck ? newReserveZeroesCheck[0].length : 0;
 
 					// To currency: new rate
