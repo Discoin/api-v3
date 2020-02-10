@@ -252,7 +252,22 @@ export class Transaction {
 					const fromAmount = parseFloat(this.amount);
 
 					// Payout should never be less than 0
-					this.payout = Math.max(roundDecimals(-(Math.exp(-((fromCapInDiscoin * (Math.log(fromCurrencyReserve + fromAmount) - Math.log(fromCurrencyReserve))) / toCapInDiscoin)) * toCurrencyReserve - toCurrencyReserve), 2), 0);
+					this.payout = Math.max(
+						roundDecimals(
+							-(
+								Math.exp(
+									-(
+										(fromCapInDiscoin * (Math.log(fromCurrencyReserve + fromAmount) - Math.log(fromCurrencyReserve))) /
+										toCapInDiscoin
+									)
+								) *
+									toCurrencyReserve -
+								toCurrencyReserve
+							),
+							2
+						),
+						0
+					);
 
 					const newReserve = parseFloat(toCurrency.reserve) - this.payout;
 					const newToRate = toCapInDiscoin / newReserve;
@@ -267,9 +282,11 @@ export class Transaction {
 					const newReserveZeroesCheck = newReserveString.match(zeroesCheck);
 					const newReserveZeroes = newReserveZeroesCheck ? newReserveZeroesCheck[0].length : 0;
 
-
 					// To currency: new rate
-					const newToCurrencyData = {reserve: roundDecimals(newReserve, Math.max(2, newReserveZeroes + 1 )), value: roundDecimals(newToRate, Math.max(4, newToRateZeroes + 1))};
+					const newToCurrencyData = {
+						reserve: roundDecimals(newReserve, Math.max(2, newReserveZeroes + 1)),
+						value: roundDecimals(newToRate, Math.max(4, newToRateZeroes + 1))
+					};
 					this.updateInflux({timestamp: this.timestamp, currencyID: this.toId, ...newToCurrencyData});
 
 					// Avoid letting rounding make a rate 0;
