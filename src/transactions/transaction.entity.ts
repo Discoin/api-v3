@@ -250,7 +250,7 @@ export class Transaction {
 					const newReserve = parseFloat(toCurrency.reserve) - this.payout;
 					const newToRate = toCapInDiscoin / newReserve;
 
-					const zeroesCheck = /(?<=\.)0+(?=[1-9])/;
+					const zeroesCheck = /(?<=^0\.)0+(?=[1-9])/;
 					// Prevent rounding from making newToRate 0
 					const newToRateZeroesCheck = zeroesCheck.exec(newToRate.toString());
 					const newToRateZeroes = newToRateZeroesCheck ? newToRateZeroesCheck[0].length : 0;
