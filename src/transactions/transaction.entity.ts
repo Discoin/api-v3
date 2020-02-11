@@ -1,16 +1,16 @@
-import {ApiProperty} from '@nestjs/swagger';
-import {CrudValidationGroups} from '@nestjsx/crud';
-import {IsBoolean, IsDefined, IsNotEmpty, IsNumberString, IsNumber, IsOptional, IsPositive, Length, Max} from 'class-validator';
-import {stripIndents} from 'common-tags';
 import {Bot} from 'src/bots/bot.entity';
 import {Currency} from 'src/currencies/currency.entity';
 import {Entities} from 'src/util/constants';
-import {BeforeInsert, Column, Entity, getRepository, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
 import {SignedInBot} from 'types/bot';
 import {roundDecimals} from 'src/util/decimal-format';
-import {WebhookClient, MessageEmbed, Message} from 'discord.js';
 import {discordWebhook} from 'src/util/config';
 import {influx, Measurements, Tags} from 'src/util/influxdb';
+import {WebhookClient, MessageEmbed, Message} from 'discord.js';
+import {BeforeInsert, Column, Entity, getRepository, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
+import {stripIndents} from 'common-tags';
+import {IsBoolean, IsDefined, IsNotEmpty, IsNumberString, IsNumber, IsOptional, IsPositive, Length, Max} from 'class-validator';
+import {CrudValidationGroups} from '@nestjsx/crud';
+import {ApiProperty} from '@nestjs/swagger';
 import {IPoint} from 'influx';
 
 const {CREATE, UPDATE} = CrudValidationGroups;
