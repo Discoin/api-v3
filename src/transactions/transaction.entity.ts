@@ -238,12 +238,7 @@ export class Transaction {
 					this.payout = Math.max(
 						roundDecimals(
 							-(
-								Math.exp(
-									-(
-										(fromCapInDiscoin * (Math.log(fromCurrencyReserve + fromAmount) - Math.log(fromCurrencyReserve))) /
-										toCapInDiscoin
-									)
-								) *
+								Math.exp(-((fromCapInDiscoin * (Math.log(fromCurrencyReserve + fromAmount) - Math.log(fromCurrencyReserve))) / toCapInDiscoin)) *
 									toCurrencyReserve -
 								toCurrencyReserve
 							),
