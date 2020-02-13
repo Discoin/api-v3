@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js for use with Actions
         uses: actions/setup-node@v1
         with:
-          node-version: '12.13.1'
+          node-version: '12.15.0'
       - name: Install Yarn
         run: curl -o- -L https://yarnpkg.com/install.sh | bash
       - name: Install dependencies with Yarn
@@ -36,7 +36,7 @@ jobs:
       - name: Setup Node.js for use with Actions
         uses: actions/setup-node@v1
         with:
-          node-version: '12.13.1'
+          node-version: '12.15.0'
       - name: Install Yarn
         run: curl -o- -L https://yarnpkg.com/install.sh | bash
       - name: Install dependencies with Yarn
@@ -56,7 +56,7 @@ jobs:
       - name: Setup Node.js for use with Actions
         uses: actions/setup-node@v1
         with:
-          node-version: '12.13.1'
+          node-version: '12.15.0'
       - name: Install Yarn
         run: curl -o- -L https://yarnpkg.com/install.sh | bash
       - name: Install dependencies with Yarn
