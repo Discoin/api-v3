@@ -1,7 +1,7 @@
 import {Controller, UseGuards} from '@nestjs/common';
 import {AuthGuard} from '@nestjs/passport';
 import {ApiBearerAuth, ApiTags} from '@nestjs/swagger';
-import {Crud} from '@nestjsx/crud';
+import {Crud, BaseRouteName} from '@nestjsx/crud';
 import {Transaction} from 'src/transactions/transaction.entity';
 import {TransactionsService} from 'src/transactions/transactions.service';
 import {Entities} from 'src/util/constants';
@@ -25,9 +25,8 @@ const currencyJoinOptions = {
 			to: currencyJoinOptions
 		}
 	},
-	// @ts-ignore
 	routes: {
-		only: ['createManyBase', 'createOneBase', 'getManyBase', 'getOneBase', 'updateOneBase'],
+		only: ['createManyBase', 'createOneBase', 'getManyBase', 'getOneBase', 'updateOneBase'] as BaseRouteName[],
 		createManyBase: {
 			decorators: [UseGuards(AuthGuard('bearer'), ConversionCheckGuard, TransactionUpdateGuard)],
 			interceptors: [BotAPITokenInterceptor]

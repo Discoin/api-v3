@@ -1,5 +1,5 @@
 import {Controller} from '@nestjs/common';
-import {Crud} from '@nestjsx/crud';
+import {Crud, BaseRouteName} from '@nestjsx/crud';
 import {ApiTags} from '@nestjs/swagger';
 import {Entities} from 'src/util/constants';
 import {Bot} from './bot.entity';
@@ -17,9 +17,8 @@ import {BotsService} from './bots.service';
 			}
 		}
 	},
-	// @ts-ignore
 	routes: {
-		only: ['getManyBase', 'getOneBase']
+		only: ['getManyBase', 'getOneBase'] as BaseRouteName[]
 	},
 	params: {
 		id: {
