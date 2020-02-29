@@ -181,5 +181,4 @@ $RECYCLE.BIN/
 tsc_output
 
 # Environment variables
-cachet.env
-grafana.env
+*.env
