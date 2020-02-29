@@ -1,26 +1,16 @@
-import {ApiProperty} from '@nestjs/swagger';
-import {CrudValidationGroups} from '@nestjsx/crud';
-import {
-	IsBoolean,
-	IsDefined,
-	IsNotEmpty,
-	IsNumberString,
-	IsNumber,
-	IsOptional,
-	IsPositive,
-	Length,
-	Max
-} from 'class-validator';
-import {stripIndents} from 'common-tags';
 import {Bot} from 'src/bots/bot.entity';
 import {Currency} from 'src/currencies/currency.entity';
 import {Entities} from 'src/util/constants';
-import {BeforeInsert, Column, Entity, getRepository, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
 import {SignedInBot} from 'types/bot';
 import {roundDecimals} from 'src/util/decimal-format';
-import {WebhookClient, MessageEmbed, Message} from 'discord.js';
 import {discordWebhook} from 'src/util/config';
 import {influx, Measurements, Tags} from 'src/util/influxdb';
+import {WebhookClient, MessageEmbed, Message} from 'discord.js';
+import {BeforeInsert, Column, Entity, getRepository, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from 'typeorm';
+import {stripIndents} from 'common-tags';
+import {IsBoolean, IsDefined, IsNotEmpty, IsNumberString, IsNumber, IsOptional, IsPositive, Length, Max} from 'class-validator';
+import {CrudValidationGroups} from '@nestjsx/crud';
+import {ApiProperty} from '@nestjs/swagger';
 import {IPoint} from 'influx';
 
 const {CREATE, UPDATE} = CrudValidationGroups;
@@ -167,9 +157,7 @@ export class Transaction {
 			return hook.send(
 				new MessageEmbed({
 					title: options.id,
-					description: `${options.amount.toLocaleString()} ${options.from.id} ➡️ ${options.payout.toLocaleString()} ${
-						options.to.id
-					}`,
+					description: `${options.amount.toLocaleString()} ${options.from.id} ➡️ ${options.payout.toLocaleString()} ${options.to.id}`,
 					url: `https://dash.discoin.zws.im/#/transactions/${encodeURIComponent(this.id)}/show`,
 					color: 0x4caf50,
 					timestamp: options.timestamp,
@@ -187,12 +175,7 @@ export class Transaction {
 	 * Add a measurement to InfluxDB.
 	 * @param data The data to use to update InfluxDB with
 	 */
-	async updateInflux(data: {
-		currencyID: string;
-		reserve: number;
-		value: number;
-		timestamp: IPoint['timestamp'];
-	}): Promise<void> {
+	async updateInflux(data: {currencyID: string; reserve: number; value: number; timestamp: IPoint['timestamp']}): Promise<void> {
 		return influx.writePoints([
 			{
 				measurement: Measurements.CURRENCY,
@@ -216,10 +199,9 @@ export class Transaction {
 				this.fromId = bot.currency.id;
 
 				// Market cap for the `from` currency before this transaction was started
-				const marketCapInDiscoin = parseFloat(bot.currency.reserve) * bot.currency.value;
-				const newConversionRate = marketCapInDiscoin / (parseFloat(bot.currency.reserve) + parseFloat(this.amount));
+				const fromCapInDiscoin = parseFloat(bot.currency.reserve) * bot.currency.value;
+				const newConversionRate = fromCapInDiscoin / (parseFloat(bot.currency.reserve) + parseFloat(this.amount));
 				// The value of the `from` currency in Discoin
-				const fromDiscoinValue = parseFloat(this.amount) * newConversionRate;
 				const fromCurrency = await currencies.findOne(this.fromId);
 				const toCurrency = await currencies.findOne(this.toId);
 
@@ -247,34 +229,52 @@ export class Transaction {
 				this.payout = 0;
 
 				if (toCurrency && fromCurrency) {
+					const fromCurrencyReserve = parseFloat(bot.currency.reserve);
+					const toCurrencyReserve = parseFloat(toCurrency.reserve);
+					const toCapInDiscoin = toCurrency.value * toCurrencyReserve;
+					const fromAmount = parseFloat(this.amount);
+
 					// Payout should never be less than 0
-					this.payout = Math.max(roundDecimals(fromDiscoinValue / toCurrency.value, 2), 0);
+					this.payout = Math.max(
+						roundDecimals(
+							-(
+								Math.exp(-((fromCapInDiscoin * (Math.log(fromCurrencyReserve + fromAmount) - Math.log(fromCurrencyReserve))) / toCapInDiscoin)) *
+									toCurrencyReserve -
+								toCurrencyReserve
+							),
+							2
+						),
+						0
+					);
 
-					// Remember to convert the `from` currency to the `from` currency amount
-					const difference = (parseFloat(this.amount) * bot.currency.value) / toCurrency.value;
+					const newReserve = parseFloat(toCurrency.reserve) - this.payout;
+					const newToRate = toCapInDiscoin / newReserve;
 
-					// Avoid making the reserve run out
-					if (parseFloat(toCurrency.reserve) - difference > 1) {
-						// This rounds the value to 2 decimal places
-						const newReserve = parseFloat(toCurrency.reserve) - difference;
-						// To currency: new rate
-						const newToRate =
-							(parseFloat(toCurrency.reserve) * toCurrency.value) / (parseFloat(toCurrency.reserve) - difference);
+					const zeroesCheck = /(?<=^0\.)0+(?=[1-9])/;
+					// Prevent rounding from making newToRate 0
+					const newToRateZeroesCheck = zeroesCheck.exec(newToRate.toString());
+					const newToRateZeroes = newToRateZeroesCheck ? newToRateZeroesCheck[0].length : 0;
+					// Prevent rounding from making reserves 0
+					const newReserveZeroesCheck = zeroesCheck.exec(newReserve.toString());
+					const newReserveZeroes = newReserveZeroesCheck ? newReserveZeroesCheck[0].length : 0;
 
-						const newToCurrencyData = {reserve: roundDecimals(newReserve, 2), value: roundDecimals(newToRate, 4)};
+					// To currency: new rate
+					const newToCurrencyData = {
+						reserve: roundDecimals(newReserve, Math.max(2, newReserveZeroes + 1)),
+						value: roundDecimals(newToRate, Math.max(4, newToRateZeroes + 1))
+					};
+					this.updateInflux({timestamp: this.timestamp, currencyID: this.toId, ...newToCurrencyData});
 
-						this.updateInflux({timestamp: this.timestamp, currencyID: this.toId, ...newToCurrencyData});
-
-						// Decrease the `to` currency reserve, increases value
-						writeOperations.push(
-							currencies
-								.createQueryBuilder()
-								.update()
-								.set({...newToCurrencyData, reserve: newToCurrencyData.reserve.toString()})
-								.where('id = :id', {id: this.toId})
-								.execute()
-						);
-					}
+					// Avoid letting rounding make a rate 0;
+					// Decrease the `to` currency reserve, increases value
+					writeOperations.push(
+						currencies
+							.createQueryBuilder()
+							.update()
+							.set({...newToCurrencyData, reserve: newToCurrencyData.reserve.toString()})
+							.where('id = :id', {id: this.toId})
+							.execute()
+					);
 
 					// We do this after all the fields are populated
 					// eslint-disable-next-line promise/prefer-await-to-then

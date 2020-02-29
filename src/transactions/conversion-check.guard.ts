@@ -15,9 +15,7 @@ export class ConversionCheckGuard implements CanActivate {
 
 		if (body) {
 			if (body.toId === signedInBot.currency.id) {
-				throw new BadRequestException(
-					`You can not convert ${signedInBot.currency.id} to ${body.toId} because they are the same`
-				);
+				throw new BadRequestException(`You can not convert ${signedInBot.currency.id} to ${body.toId} because they are the same`);
 			} else {
 				return true;
 			}

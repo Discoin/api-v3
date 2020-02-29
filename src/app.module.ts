@@ -1,13 +1,7 @@
 import {join} from 'path';
 import {Module} from '@nestjs/common';
 import {TypeOrmModule} from '@nestjs/typeorm';
-import {
-	TerminusModule,
-	TypeOrmHealthIndicator,
-	DNSHealthIndicator,
-	MemoryHealthIndicator,
-	DiskHealthIndicator
-} from '@nestjs/terminus';
+import {TerminusModule, TypeOrmHealthIndicator, DNSHealthIndicator, MemoryHealthIndicator, DiskHealthIndicator} from '@nestjs/terminus';
 import {AppController} from './app.controller';
 import {AppService} from './app.service';
 import {AuthModule} from './auth/auth.module';
