@@ -10,7 +10,7 @@
 		"@nestjs/common": "^6.11.8",
 		"@nestjs/core": "^6.11.8",
 		"@nestjs/passport": "^6.2.0",
-		"@nestjs/platform-express": "^6.11.8",
+		"@nestjs/platform-express": "^6.11.9",
 		"@nestjs/swagger": "^4.2.12",
 		"@nestjs/terminus": "^6.5.6",
 		"@nestjs/typeorm": "^6.3.3",
