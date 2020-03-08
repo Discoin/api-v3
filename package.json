@@ -32,7 +32,7 @@
 		"rxjs": "^6.5.4",
 		"sqreen": "^1.38.3",
 		"swagger-ui-express": "^4.1.2",
-		"typeorm": "^0.2.22"
+		"typeorm": "^0.2.24"
 	},
 	"description": "Rewritten server-side API for Discoin",
 	"devDependencies": {
