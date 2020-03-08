@@ -16,7 +16,7 @@
 		"@nestjs/typeorm": "^6.3.3",
 		"@nestjsx/crud": "^4.4.1",
 		"@nestjsx/crud-typeorm": "^4.4.1",
-		"@sentry/node": "5.13.1",
+		"@sentry/node": "5.13.2",
 		"@types/ws": "^7.2.2",
 		"class-transformer": "^0.2.3",
 		"class-validator": "^0.11.0",
