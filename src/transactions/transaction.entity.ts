@@ -199,7 +199,7 @@ export class Transaction {
 				this.fromId = bot.currency.id;
 
 				// Market cap for the `from` currency before this transaction was started
-				const fromCapInDiscoin = parseFloat(bot.curreny.wid);
+				const fromCapInDiscoin = parseFloat(bot.currency.wid);
 				const newConversionRate = fromCapInDiscoin / (parseFloat(bot.currency.reserve) + parseFloat(this.amount));
 				// The value of the `from` currency in Discoin
 				const fromCurrency = await currencies.findOne(this.fromId);
