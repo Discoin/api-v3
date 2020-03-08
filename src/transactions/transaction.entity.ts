@@ -231,7 +231,7 @@ export class Transaction {
 				if (toCurrency && fromCurrency) {
 					const fromCurrencyReserve = parseFloat(bot.currency.reserve);
 					const toCurrencyReserve = parseFloat(toCurrency.reserve);
-					const toCapInDiscoin = parseFloat(bot.currency.wid);
+					const toCapInDiscoin = parseFloat(toCurrency.wid);
 					const fromAmount = parseFloat(this.amount);
 
 					// Payout should never be less than 0
