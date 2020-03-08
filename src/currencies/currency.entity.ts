@@ -39,4 +39,14 @@ export class Currency {
 		minimum: 0
 	})
 	reserve!: string;
+
+	/** The Worth in Discoin of this currency */
+	@Column({type: 'numeric'})
+	@ApiProperty({
+		description: 'The Worth in Discoin of this currency.',
+		example: 10000000,
+		exclusiveMinimum: true,
+		minimum: 0
+	})
+	wid!: string;
 }

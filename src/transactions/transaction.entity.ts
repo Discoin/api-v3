@@ -199,7 +199,7 @@ export class Transaction {
 				this.fromId = bot.currency.id;
 
 				// Market cap for the `from` currency before this transaction was started
-				const fromCapInDiscoin = parseFloat(bot.currency.reserve) * bot.currency.value;
+				const fromCapInDiscoin = parseFloat(bot.curreny.wid);
 				const newConversionRate = fromCapInDiscoin / (parseFloat(bot.currency.reserve) + parseFloat(this.amount));
 				// The value of the `from` currency in Discoin
 				const fromCurrency = await currencies.findOne(this.fromId);
@@ -231,7 +231,7 @@ export class Transaction {
 				if (toCurrency && fromCurrency) {
 					const fromCurrencyReserve = parseFloat(bot.currency.reserve);
 					const toCurrencyReserve = parseFloat(toCurrency.reserve);
-					const toCapInDiscoin = toCurrency.value * toCurrencyReserve;
+					const toCapInDiscoin = parseFloat(bot.currency.wid);
 					const fromAmount = parseFloat(this.amount);
 
 					// Payout should never be less than 0
