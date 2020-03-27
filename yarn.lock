@@ -2350,8 +2350,8 @@ dir-glob@^2.2.2:
 
 discord.js@discordjs/discord.js:
   version "12.0.2"
-  uid "76634db9bec10f52521d77fac970406fa8b3f36a"
-  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/76634db9bec10f52521d77fac970406fa8b3f36a"
+  uid "51ff5ddb6449d1b0c12406812afe34663d96430a"
+  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/51ff5ddb6449d1b0c12406812afe34663d96430a"
   dependencies:
     "@discordjs/collection" "^0.1.5"
     abort-controller "^3.0.0"
