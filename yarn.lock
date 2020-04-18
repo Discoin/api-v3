@@ -249,10 +249,10 @@
     "@nestjsx/util" "^4.4.1"
     qs "^6.8.0"
 
-"@nestjsx/crud-typeorm@^4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@nestjsx/crud-typeorm/-/crud-typeorm-4.4.1.tgz#280bb8ed2d1f25dd70c8bb4e46d1147ab2090b41"
-  integrity sha512-NzT++gU95oCGMrIP8F2YTbxPuBqovy5JxRqUwKnrPB40JKnRvQcgCk4LJA9BOGSbdBTDQ8y0JZ7+GfmRPHxFbQ==
+"@nestjsx/crud-typeorm@^4.4.4":
+  version "4.4.4"
+  resolved "https://registry.yarnpkg.com/@nestjsx/crud-typeorm/-/crud-typeorm-4.4.4.tgz#408e3eee9582e0ce8f18bd6397e565426abd6662"
+  integrity sha512-ups5dCQAMsskUKVmGr0p8b48UOva11KFLnSSiqBGk/bCj2RXk3I51u0KLHMETdo4BvRiav1IUMoX3JZxfgazpw==
   dependencies:
     "@zmotivat0r/o0" "^1.0.2"
 
