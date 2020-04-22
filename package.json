@@ -26,7 +26,7 @@
 		"influx": "^5.5.1",
 		"passport": "^0.4.0",
 		"passport-http-bearer": "^1.0.1",
-		"pg": "^7.18.2",
+		"pg": "^8.0.3",
 		"reflect-metadata": "^0.1.13",
 		"rimraf": "^3.0.2",
 		"rxjs": "^6.5.4",
