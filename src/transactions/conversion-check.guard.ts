@@ -1,5 +1,6 @@
-import {Injectable, CanActivate, ExecutionContext, UnauthorizedException, BadRequestException} from '@nestjs/common';
+import {Injectable, CanActivate, ExecutionContext, UnauthorizedException, BadRequestException, ForbiddenException} from '@nestjs/common';
 import {SignedInBot} from 'types/bot';
+import {BotsService} from 'src/bots/bots.service';
 import {Transaction} from './transaction.entity';
 
 @Injectable()
@@ -12,10 +13,14 @@ export class ConversionCheckGuard implements CanActivate {
 		if (!signedInBot) {
 			throw new UnauthorizedException();
 		}
+		
+		const toBot = await BotsService.findOne({where: {currencyId: body.toId}});
 
 		if (body) {
 			if (body.toId === signedInBot.currency.id) {
 				throw new BadRequestException(`You can not convert ${signedInBot.currency.id} to ${body.toId} because they are the same`);
+			} else if (toBot.token.startsWith("__")) (
+				throw new ForbiddenException(`Destination bot disabled`);
 			} else {
 				return true;
 			}
