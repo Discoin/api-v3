@@ -62,6 +62,15 @@
   resolved "https://registry.yarnpkg.com/@discordjs/collection/-/collection-0.1.5.tgz#1781c620b4c88d619bd0373a1548e5a6025e3d3a"
   integrity sha512-CU1q0UXQUpFNzNB7gufgoisDHP7n+T3tkqTsp3MNUkVJ5+hS3BCvME8uCXAUFlz+6T2FbTCu75A+yQ7HMKqRKw==
 
+"@discordjs/form-data@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@discordjs/form-data/-/form-data-3.0.1.tgz#5c9e6be992e2e57d0dfa0e39979a850225fb4697"
+  integrity sha512-ZfFsbgEXW71Rw/6EtBdrP5VxBJy4dthyC0tpQKGKmYFImlmmrykO14Za+BiIVduwjte0jXEBlhSKf0MWbFp9Eg==
+  dependencies:
+    asynckit "^0.4.0"
+    combined-stream "^1.0.8"
+    mime-types "^2.1.12"
+
 "@godaddy/terminus@^4.3.1":
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/@godaddy/terminus/-/terminus-4.3.1.tgz#20bc24271df373ae362b3948c9dd95d22736b5c2"
@@ -2349,13 +2358,13 @@ dir-glob@^2.2.2:
     path-type "^3.0.0"
 
 discord.js@discordjs/discord.js:
-  version "12.0.2"
-  uid "76634db9bec10f52521d77fac970406fa8b3f36a"
-  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/76634db9bec10f52521d77fac970406fa8b3f36a"
+  version "12.2.0"
+  uid "026691702da7d1fcf9a959f00082f07f1e14b13d"
+  resolved "https://codeload.github.com/discordjs/discord.js/tar.gz/026691702da7d1fcf9a959f00082f07f1e14b13d"
   dependencies:
     "@discordjs/collection" "^0.1.5"
+    "@discordjs/form-data" "^3.0.1"
     abort-controller "^3.0.0"
-    form-data "^3.0.0"
     node-fetch "^2.6.0"
     prism-media "^1.2.0"
     setimmediate "^1.0.5"
@@ -3403,15 +3412,6 @@ fork-ts-checker-webpack-plugin@4.0.3:
     semver "^5.6.0"
     tapable "^1.0.0"
     worker-rpc "^0.1.0"
-
-form-data@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/form-data/-/form-data-3.0.0.tgz#31b7e39c85f1355b7139ee0c647cf0de7f83c682"
-  integrity sha512-CKMFDglpbMi6PyN+brwB9Q/GOw0eAnsrEZDgcsH5Krhz5Od/haKHAX0NmQfha2zPPz0JpWzA7GJHGSnvCRLWsg==
-  dependencies:
-    asynckit "^0.4.0"
-    combined-stream "^1.0.8"
-    mime-types "^2.1.12"
 
 forwarded@~0.1.2:
   version "0.1.2"
