@@ -1220,7 +1220,7 @@ avvio@^6.2.2:
     debug "^4.0.0"
     fastq "^1.6.0"
 
-axios@0.19.2:
+axios@0.19.2, axios@^0.19.0:
   version "0.19.2"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.2.tgz#3ea36c5d8818d0d5f8a8a97a6d36b86cdc00cb27"
   integrity sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==
@@ -1263,6 +1263,15 @@ big.js@^5.2.2:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/big.js/-/big.js-5.2.2.tgz#65f0af382f578bcdc742bd9c281e9cb2d7768328"
   integrity sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==
+
+binary-downloader@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/binary-downloader/-/binary-downloader-0.1.1.tgz#e6b8d848dda343e6417cb32153f1fcea897510d2"
+  integrity sha512-0q0x6so3VzH49QdsSO9nFa7XcE/guL5yMP3ClNfPiXyMSnX7TeFRa3Sm6yTb/Hms4SpUFC4c85u6I+/9fyOxBw==
+  dependencies:
+    detect-libc "^1.0.3"
+    semver "^6.3.0"
+    tar "^4.4.13"
 
 binary-extensions@^1.0.0:
   version "1.13.1"
@@ -1844,6 +1853,13 @@ code-point-at@^1.0.0:
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
+code@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/code/-/code-4.1.0.tgz#209ad11d05af8a0c1c7aaf694d9fa4d2c7d95b85"
+  integrity sha1-IJrRHQWvigwceq9pTZ+k0sfZW4U=
+  dependencies:
+    hoek "4.x.x"
+
 collection-visit@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/collection-visit/-/collection-visit-1.0.0.tgz#4bc0373c164bc3291b4d368c829cf1a80a59dca0"
@@ -2314,7 +2330,7 @@ destroy@~1.0.4:
   resolved "https://registry.yarnpkg.com/destroy/-/destroy-1.0.4.tgz#978857442c44749e4206613e37946205826abd80"
   integrity sha1-l4hXRCxEdJ5CBmE+N5RiBYJqvYA=
 
-detect-libc@^1.0.2:
+detect-libc@^1.0.2, detect-libc@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
   integrity sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
@@ -3773,6 +3789,11 @@ hmac-drbg@^1.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
+hoek@4.x.x:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
+  integrity sha512-QLg82fGkfnJ/4iy1xZ81/9SIJiq1NGFUMGs6ParyjBZr6jW2Ufj/snDqTHixNlHdPNwN2RLVD0Pi3igeK9+JfA==
+
 hosted-git-info@^2.1.4:
   version "2.8.5"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.5.tgz#759cfcf2c4d156ade59b0b2dfabddc42a6b9c70c"
@@ -5230,22 +5251,6 @@ node-pre-gyp@^0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.12.0.tgz#39ba4bb1439da030295f899e3b520b7785766149"
   integrity sha512-4KghwV8vH5k+g2ylT+sLTjy5wmUOb9vPhnM8NHvRf9dHmnW/CndrFXy2aRPaPST6dugXSdHXfeaHQm77PIz/1A==
-  dependencies:
-    detect-libc "^1.0.2"
-    mkdirp "^0.5.1"
-    needle "^2.2.1"
-    nopt "^4.0.1"
-    npm-packlist "^1.1.6"
-    npmlog "^4.0.2"
-    rc "^1.2.7"
-    rimraf "^2.6.1"
-    semver "^5.3.0"
-    tar "^4"
-
-node-pre-gyp@^0.13.0:
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.13.0.tgz#df9ab7b68dd6498137717838e4f92a33fc9daa42"
-  integrity sha512-Md1D3xnEne8b/HGVQkZZwV27WUi1ZRuZBij24TNaZwUPU3ZAFtvT6xxJGaUVillfmMKnn5oD1HoGsp2Ftik7SQ==
   dependencies:
     detect-libc "^1.0.2"
     mkdirp "^0.5.1"
@@ -6944,17 +6949,25 @@ sprintf-js@~1.0.2:
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
 
-sq-native@0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/sq-native/-/sq-native-0.8.0.tgz#2f831c0d10346ad68aa46b80056227042bf44cf9"
-  integrity sha512-gVBC/Ze7JPJXgBd6kFvWYc9WvuhnaKxbR2Q7w0TSMNk+P6GWVx4yOlfsNJ0NcWZQTWSooTwwB/x1vlFldKzzvw==
+sq-native@0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/sq-native/-/sq-native-0.9.1.tgz#72addb912d894446f5832acb57b033da91e02001"
+  integrity sha512-MOOWvIl9NnccFp81STwRPMO/VEFHwTNS3Sz+hXo/rZuusEBkBziXfvkM1ukxz0qie7THwKm/EFVwjd52ICrriw==
   dependencies:
-    node-pre-gyp "^0.13.0"
+    binary-downloader "0.1.1"
 
-sqreen@^1.38.4:
-  version "1.38.4"
-  resolved "https://registry.yarnpkg.com/sqreen/-/sqreen-1.38.4.tgz#df564cad91d530f9bf0a9bee2888cb3de1f3b8e1"
-  integrity sha512-3S/Ic/E+DeMx+IUytT/x/k9uzAonUGDiVRIVJVumjzTKcMvEc4qQtL49FPbWXXeHUzakvLcle3bB6eUuaVNQjA==
+sqreen-sdk@^0.6.3:
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/sqreen-sdk/-/sqreen-sdk-0.6.3.tgz#0a08ab1fabb6136bf7152beb9f863ce763a73c87"
+  integrity sha512-Se6VpQCAvi20eRbv9Qcq4EnyKV4wkO5lHb7inYEcIo5wkHy/rdGNZ6G6DPeEY7SczZz1gxhLa5UTnXsjcF6mFg==
+  dependencies:
+    axios "^0.19.0"
+    code "^4.1.0"
+
+sqreen@^1.41.0:
+  version "1.41.0"
+  resolved "https://registry.yarnpkg.com/sqreen/-/sqreen-1.41.0.tgz#f4caee5f9d7027db19e1eb3a32bd089a563d404c"
+  integrity sha512-HaL4UHifQCECLG/lFHS4Dxp6o7IC84SB9PCsi3SNRRIJMzW1bxqLvksdwtvHS/KfGFi6OY7hTBKJbsQW58D90Q==
   dependencies:
     async-listener "^0.6.0"
     async-lock "^1.2.2"
@@ -6975,11 +6988,12 @@ sqreen@^1.38.4:
     recursive-readdir "^2.1.0"
     semver "^5.2.0"
     shimmer "^1.2.0"
+    sqreen-sdk "^0.6.3"
     uuid "^3.1.0"
     winston "^2.2.0"
     zxcvbn "^4.4.2"
   optionalDependencies:
-    sq-native "0.8.0"
+    sq-native "0.9.1"
 
 ssri@^6.0.1:
   version "6.0.1"
@@ -7256,7 +7270,7 @@ tapable@^1.0.0, tapable@^1.1.3:
   resolved "https://registry.yarnpkg.com/tapable/-/tapable-1.1.3.tgz#a1fccc06b58db61fd7a45da2da44f5f3a3e67ba2"
   integrity sha512-4WK/bYZmj8xLr+HUCODHGF1ZFzsYffasLUgEiMBY4fgtltdO6B4WJtlSbPaDTLpYTcGVwM2qLnFTICEcNxs3kA==
 
-tar@^4, tar@^4.4.2:
+tar@^4, tar@^4.4.13, tar@^4.4.2:
   version "4.4.13"
   resolved "https://registry.yarnpkg.com/tar/-/tar-4.4.13.tgz#43b364bc52888d555298637b10d60790254ab525"
   integrity sha512-w2VwSrBoHa5BsSyH+KxEqeQBAllHhccyMFVHtGtdMpF4W7IRWfZjFiQceJPChOeTsSDVUpER2T8FA93pr0L+QA==
