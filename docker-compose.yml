@@ -91,7 +91,7 @@ services:
       - 'traefik.http.middlewares.cachet-compress.compress=true'
       - 'traefik.http.services.cachet.loadbalancer.server.port=8000'
   traefik:
-    image: traefik:v2.1.1
+    image: traefik:2.2.1
     restart: unless-stopped
     ports:
       - '80:80'
