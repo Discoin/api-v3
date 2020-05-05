@@ -64,7 +64,7 @@ services:
       - 'traefik.http.middlewares.grafana-compress.compress=true'
       - 'traefik.http.services.grafana.loadbalancer.server.port=3000'
   influxdb:
-    image: influxdb:1.5.4-alpine
+    image: influxdb:1.8.0-alpine
     restart: unless-stopped
     env_file: influxdb.env
     expose:
