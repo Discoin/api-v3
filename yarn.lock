@@ -8018,10 +8018,10 @@ xmlbuilder@~11.0.0:
   resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-11.0.1.tgz#be9bae1c8a046e76b31127726347d0ad7002beb3"
   integrity sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==
 
-xo@0.28.0:
-  version "0.28.0"
-  resolved "https://registry.yarnpkg.com/xo/-/xo-0.28.0.tgz#8dc9d2efff505f03c4068121aa49e543c14a71ac"
-  integrity sha512-Ilen8cwO6KyCUmCIwBDnMRHArIm6jOfJViz6mwD5t63AsQC+xsmb2Vvvp0mkKCEzeY6J+tKVK+4mYGpqSYYKPA==
+xo@0.28.3:
+  version "0.28.3"
+  resolved "https://registry.yarnpkg.com/xo/-/xo-0.28.3.tgz#2386e1c7249bfb854a89e14fe8bb2a3aebc217c2"
+  integrity sha512-HA1wqG9NI9CTHVZeNyLVVs2HGwdcCtxSKPwlIVpwuZTGzVkv5rCzqBhTGKpLX6aYZu6YkuCL2pvRVyZqYMtlCw==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^2.23.0"
     "@typescript-eslint/parser" "^2.23.0"
