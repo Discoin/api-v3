@@ -241,12 +241,12 @@
   dependencies:
     uuid "3.4.0"
 
-"@nestjsx/crud-request@^4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@nestjsx/crud-request/-/crud-request-4.4.1.tgz#fcd0bd909c2dccb13c32a61bbe2c3b858402d142"
-  integrity sha512-Ukzu7xQJKOCGI4BalDL2x/9z6D9r81iGYq0/h3KvIwu25J+2IN5dlXzqqE/4yHYO/0Mdtj15dQiDKWKGwKg8nQ==
+"@nestjsx/crud-request@^4.4.5":
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/@nestjsx/crud-request/-/crud-request-4.6.1.tgz#7dad476399ac61b9ba718139e81edb694d440fd3"
+  integrity sha512-nkq9+5vUtgUTECY76vlWmhli62RcUHpU820HlOK8+1iSBZjT0VFyhKNuZbVxGP7Py3qxwjxTulaLtvGydkYPEA==
   dependencies:
-    "@nestjsx/util" "^4.4.1"
+    "@nestjsx/util" "^4.6.1"
     qs "^6.8.0"
 
 "@nestjsx/crud-typeorm@4.4.1":
@@ -256,19 +256,19 @@
   dependencies:
     "@zmotivat0r/o0" "^1.0.2"
 
-"@nestjsx/crud@4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@nestjsx/crud/-/crud-4.4.1.tgz#80ae97f9561e256d836963c811d3f797b5f89f80"
-  integrity sha512-uUOoG5RxHCt1FYBbuYhrSDSkqcRstytfi0II2sGf1zVksgGK+WbFEt7FvTuRpCJJ14IjGzFMblOMat61GISV+g==
+"@nestjsx/crud@4.4.5":
+  version "4.4.5"
+  resolved "https://registry.yarnpkg.com/@nestjsx/crud/-/crud-4.4.5.tgz#09e065e29becc694826e1c019de7309d5230b35c"
+  integrity sha512-9Rptd7T4rOwdF1B+P7TTxH20XXBAKD667aSrk7flXxpDAnHfd+6kqCJndThtdaUew76qa8sUgRK5x7C2n7+ThQ==
   dependencies:
-    "@nestjsx/crud-request" "^4.4.1"
-    "@nestjsx/util" "^4.4.1"
+    "@nestjsx/crud-request" "^4.4.5"
+    "@nestjsx/util" "^4.4.5"
     deepmerge "^3.2.0"
 
-"@nestjsx/util@^4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@nestjsx/util/-/util-4.4.1.tgz#17e494bf55f687a28cacc02e0e1234b4d0c42e5f"
-  integrity sha512-iJSPGgbkOcHZTuXfXhix8n0Nldhbx2aJlU/j/fVAfBu7Et0dQR77Vnnx3kzsUWz63ElQy3GEz/ptJXyN283SPQ==
+"@nestjsx/util@^4.4.5", "@nestjsx/util@^4.6.1":
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/@nestjsx/util/-/util-4.6.1.tgz#0fecb7618b26ec8d479d6d857f3a26523c2fafd4"
+  integrity sha512-HJkZj/1fF9Y6GEiklAfF5Sk3kkOwMZ6qGlQ+RqTKVidoocf7NeviuLLRCAeMi2/LOoLKDOdVayosGCl9tzklTg==
 
 "@nodelib/fs.stat@^1.1.2":
   version "1.1.3"
