@@ -560,10 +560,10 @@
   resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
   integrity sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
 
-"@types/passport-http-bearer@1.0.34":
-  version "1.0.34"
-  resolved "https://registry.yarnpkg.com/@types/passport-http-bearer/-/passport-http-bearer-1.0.34.tgz#872ddacfd8d9fb915f5be5c40e443a61bf377bc3"
-  integrity sha512-gCKSbXJb9H0e/GhoOcA3nWB8CtGel5lmQjKncgmCrad+7lEi59tPu3bgWqajwZ9hHbGZ0E4Y7D+jX9IWI8bFKA==
+"@types/passport-http-bearer@1.0.35":
+  version "1.0.35"
+  resolved "https://registry.yarnpkg.com/@types/passport-http-bearer/-/passport-http-bearer-1.0.35.tgz#8f3dc9d460bb898db25a1d6bedee0fe3804483bf"
+  integrity sha512-zAwDt99tmFquIQi0VNnKSim4+zW2D5nXCyuoefchy9q9puWT2GGNRbWII1rgKrbchGqaktI4Fw7o4fQmllL01A==
   dependencies:
     "@types/express" "*"
     "@types/passport" "*"
