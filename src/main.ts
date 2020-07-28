@@ -1,8 +1,15 @@
 import 'sqreen';
-
+import * as Sentry from '@sentry/node';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  debug: process.env.NODE_ENV === 'development',
+  environment: process.env.NODE_ENV === 'development' ? 'development' : 'production',
+  release: `discoin@${process.env.npm_package_version ?? '0.0.0-development'}`,
+});
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TerminusModule } from '@nestjs/terminus';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { SentryModule } from '@ntegral/nestjs-sentry';
 import { InfluxDbModule, InfluxModuleOptions } from 'nest-influxdb';
 import { join as joinPaths } from 'path';
 import { LoggerOptions } from 'typeorm/logger/LoggerOptions';
@@ -18,16 +17,6 @@ import { TransactionsModule } from './transactions/transactions.module';
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: joinPaths(__dirname, '..', '.env'),
-    }),
-    SentryModule.forRootAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => ({
-        dsn: configService.get('SENTRY_DSN'),
-        debug: process.env.NODE_ENV === 'development',
-        environment: process.env.NODE_ENV === 'development' ? 'development' : 'production',
-        release: `discoin@${process.env.npm_package_version ?? '0.0.0-development'}`,
-      }),
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
