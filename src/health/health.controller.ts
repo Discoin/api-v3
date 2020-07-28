@@ -1,5 +1,13 @@
 import { Controller, Get } from '@nestjs/common';
-import { DiskHealthIndicator, DNSHealthIndicator, HealthCheck, HealthCheckService, MemoryHealthIndicator, TypeOrmHealthIndicator, HealthCheckResult } from '@nestjs/terminus';
+import {
+  DiskHealthIndicator,
+  DNSHealthIndicator,
+  HealthCheck,
+  HealthCheckService,
+  MemoryHealthIndicator,
+  TypeOrmHealthIndicator,
+  HealthCheckResult,
+} from '@nestjs/terminus';
 import { convert } from 'convert';
 
 @Controller('health')
