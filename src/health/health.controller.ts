@@ -1,5 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
-import { DiskHealthIndicator, DNSHealthIndicator, HealthCheck, HealthCheckService, MemoryHealthIndicator, TypeOrmHealthIndicator } from '@nestjs/terminus';
+import { DiskHealthIndicator, DNSHealthIndicator, HealthCheck, HealthCheckService, MemoryHealthIndicator, TypeOrmHealthIndicator, HealthCheckResult } from '@nestjs/terminus';
 import { convert } from 'convert';
 
 @Controller('health')
@@ -14,7 +14,7 @@ export class HealthController {
 
   @Get()
   @HealthCheck()
-  check() {
+  check(): Promise<HealthCheckResult> {
     return this.health.check([
       () => this.dns.pingCheck('network-ping', 'https://1.1.1.1'),
       () =>

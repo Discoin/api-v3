@@ -67,7 +67,7 @@ RUN apk update \
 	&& apk add curl
 
 # Copy compiled TypeScript
-COPY --from=builder /usr/src/builder/tsc_output ./tsc_output
+COPY --from=builder /usr/src/builder/dist ./dist
 
 # Install dependencies
 COPY --from=installer /usr/src/installer/node_modules ./node_modules

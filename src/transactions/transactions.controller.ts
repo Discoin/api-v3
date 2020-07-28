@@ -132,7 +132,7 @@ export class TransactionsController implements CrudController<Transaction> {
    * Currently this is just the payout, which relies on the transaction amount and to/from currencies
    * @param transaction Transaction to use for populating
    */
-  populateDynamicFields(transaction: SetRequired<Partial<Transaction>, 'amount' | 'from' | 'to'>) {
+  populateDynamicFields(transaction: SetRequired<Partial<Transaction>, 'amount' | 'from' | 'to'>): SetRequired<typeof transaction, 'payout'> {
     const payout = this.service.calculatePayout(transaction.amount, transaction.from, transaction.to);
 
     return { ...transaction, payout };
@@ -146,7 +146,7 @@ export class TransactionsController implements CrudController<Transaction> {
    * @param transaction Transaction to validate
    * @param authPersist The bot authenticating this request
    */
-  async validate(transaction: APITransaction, authPersist: RequestBot) {
+  async validate(transaction: APITransaction, authPersist: RequestBot): Promise<void> {
     if (transaction.to === transaction.from) {
       throw new UnprocessableEntityException('The from and to currencies must be different from one another');
     }
@@ -175,7 +175,7 @@ export class TransactionsController implements CrudController<Transaction> {
   @ApiBearerAuth()
   // You MUST keep the type of the @ParsedBody() argument as the Transaction class or else the class-validator decorators won't run
   // This is actually an APITransaction, but all of the validation logic is in the Transaction entity
-  async createOne(@ParsedRequest() request: CrudRequest, @ParsedBody() _dto: Transaction) {
+  async createOne(@ParsedRequest() request: CrudRequest, @ParsedBody() _dto: Transaction): Promise<Transaction> {
     const dto: APITransaction = (_dto as unknown) as APITransaction;
 
     // Throw an error if something is wrong with the transaction
@@ -191,7 +191,7 @@ export class TransactionsController implements CrudController<Transaction> {
   @Override()
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
-  async createMany(@ParsedRequest() request: CrudRequest, @ParsedBody() _dto: CreateManyDto<Transaction>) {
+  async createMany(@ParsedRequest() request: CrudRequest, @ParsedBody() _dto: CreateManyDto<Transaction>): Promise<Transaction[]> {
     const dto: CreateManyDto<APITransaction> = (_dto as unknown) as CreateManyDto<APITransaction>;
 
     const transactions = await Promise.all(
@@ -211,7 +211,7 @@ export class TransactionsController implements CrudController<Transaction> {
   @Override()
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
-  async updateOne(@ParsedRequest() request: CrudRequest, @ParsedBody() dto: Transaction, @Param('id') transactionId: string) {
+  async updateOne(@ParsedRequest() request: CrudRequest, @ParsedBody() dto: Transaction, @Param('id') transactionId: string): Promise<Transaction> {
     // Since this is updating an existing transaction we have to fetch the information about it for access checking
     const transaction: Except<Transaction, 'from'> = await this.service.findOne({ where: { id: transactionId }, relations: ['to'] });
 

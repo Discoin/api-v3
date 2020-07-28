@@ -41,7 +41,6 @@ export class Transaction {
     example: '210024244766179329',
   })
   @Length(16, 22, { groups: [CREATE] })
-  // eslint-disable-next-line @typescript-eslint/camelcase
   @IsNumberString({ no_symbols: true }, { groups: [CREATE] })
   user: string;
 
@@ -104,7 +103,7 @@ export class Transaction {
    * Updates the reserve and rates of currencies involved in this transaction.
    */
   @AfterInsert()
-  afterInsert() {
+  async afterInsert(): Promise<void> {
     if (this.payout === undefined) {
       throw new TypeError('Transaction `payout` was not defined');
     }
@@ -112,7 +111,7 @@ export class Transaction {
     /** Table for currencies. */
     const currencies = getRepository(Currency).createQueryBuilder();
 
-    return Promise.all([
+    await Promise.all([
       // Update the reserve of the `from` currency
       currencies
         .update({ reserve: () => `reserve + ${this.amount}` })
