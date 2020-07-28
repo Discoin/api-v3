@@ -1,45 +1,61 @@
-import {join} from 'path';
-import {Module} from '@nestjs/common';
-import {TypeOrmModule} from '@nestjs/typeorm';
-import {TerminusModule, TypeOrmHealthIndicator, DNSHealthIndicator, MemoryHealthIndicator, DiskHealthIndicator} from '@nestjs/terminus';
-import {AppController} from './app.controller';
-import {AppService} from './app.service';
-import {AuthModule} from './auth/auth.module';
-import {Bot} from './bots/bot.entity';
-import {BotsModule} from './bots/bots.module';
-import {Transaction} from './transactions/transaction.entity';
-import {TransactionsModule} from './transactions/transactions.module';
-import {CurrenciesModule} from './currencies/currencies.module';
-import {postgres} from './util/config';
-import {Currency} from './currencies/currency.entity';
-import {TerminusOptionsService} from './health-checks/terminus-options.service';
+import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TerminusModule } from '@nestjs/terminus';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { SentryModule } from '@ntegral/nestjs-sentry';
+import { InfluxDbModule, InfluxModuleOptions } from 'nest-influxdb';
+import { join as joinPaths } from 'path';
+import { LoggerOptions } from 'typeorm/logger/LoggerOptions';
+import { AuthModule } from './auth/auth.module';
+import { BotsModule } from './bots/bots.module';
+import { CurrenciesModule } from './currencies/currencies.module';
+import { HealthController } from './health/health.controller';
+import { schema } from './influxdb';
+import { TransactionsModule } from './transactions/transactions.module';
 
 @Module({
-	imports: [
-		TypeOrmModule.forRoot({
-			type: 'postgres',
-			database: postgres.DATABASE,
-			password: postgres.PASSWORD,
-			host: postgres.HOST,
-			username: postgres.USER,
-			port: postgres.PORT,
-			entities: [Currency, Bot, Transaction],
-			migrations: [join(__dirname, 'db', 'migrations', '**', '*.migration.ts')],
-			ssl: postgres.SSL,
-			synchronize: true
-		}),
-		TerminusModule.forRootAsync({
-			useClass: TerminusOptionsService,
-			inject: [DNSHealthIndicator, TypeOrmHealthIndicator, DiskHealthIndicator],
-			useFactory: (dns: DNSHealthIndicator, db: TypeOrmHealthIndicator, disk: DiskHealthIndicator) =>
-				new TerminusOptionsService(dns, db, new MemoryHealthIndicator(), disk).createTerminusOptions()
-		}),
-		AuthModule,
-		CurrenciesModule,
-		BotsModule,
-		TransactionsModule
-	],
-	controllers: [AppController],
-	providers: [AppService]
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: joinPaths(__dirname, '..', '.env'),
+    }),
+    SentryModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        dsn: configService.get('SENTRY_DSN'),
+        debug: process.env.NODE_ENV === 'development',
+        environment: process.env.NODE_ENV === 'development' ? 'development' : 'production',
+        release: `discoin@${process.env.npm_package_version ?? '0.0.0-development'}`,
+      }),
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService): Promise<TypeOrmModuleOptions> => ({
+        type: configService.get('DATABASE_TYPE'),
+        url: configService.get('DATABASE_URI'),
+        synchronize: configService.get('DATABASE_SYNCHRONIZE', process.env.NODE_ENV === 'development'),
+        logging: configService.get<LoggerOptions>('TYPEORM_LOGGING', true),
+        entities: [joinPaths(__dirname, '**', '*.entity.{t,j}s')],
+      }),
+    }),
+    InfluxDbModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService): Promise<InfluxModuleOptions> => ({
+        host: configService.get('INFLUXDB_HOST'),
+        database: configService.get('INFLUXDB_DATABASE', 'discoin'),
+        password: configService.get('INFLUXDB_PASSWORD'),
+        username: configService.get('INFLUXDB_USERNAME'),
+        schema,
+      }),
+    }),
+    TerminusModule,
+    TransactionsModule,
+    BotsModule,
+    CurrenciesModule,
+    AuthModule,
+  ],
+  controllers: [HealthController],
 })
 export class AppModule {}

@@ -1,35 +1,24 @@
-import {Controller} from '@nestjs/common';
-import {Crud, BaseRouteName} from '@nestjsx/crud';
-import {ApiTags} from '@nestjs/swagger';
-import {Entities} from 'src/util/constants';
-import {Bot} from './bot.entity';
-import {BotsService} from './bots.service';
+import { Controller } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { Crud, CrudController } from '@nestjsx/crud';
+import { Bot } from './bot.entity';
+import { BotsService } from './bots.service';
 
 @Crud({
-	model: {
-		type: Bot
-	},
-	query: {
-		exclude: ['token'],
-		join: {
-			currency: {
-				eager: true
-			}
-		}
-	},
-	routes: {
-		only: ['getManyBase', 'getOneBase'] as BaseRouteName[]
-	},
-	params: {
-		id: {
-			field: 'id',
-			type: 'string',
-			primary: true
-		}
-	}
+  model: { type: Bot },
+  query: { exclude: ['token'] as Array<keyof Bot>, join: { currencies: { eager: true } } },
+  routes: { only: ['getManyBase', 'getOneBase'] },
+  validation: { forbidUnknownValues: true },
+  params: {
+    id: {
+      field: 'id',
+      type: 'string',
+      primary: true,
+    },
+  },
 })
-@Controller(Entities.BOTS)
-@ApiTags(Entities.BOTS)
-export class BotsController {
-	constructor(public service: BotsService) {}
+@ApiTags('bots')
+@Controller('bots')
+export class BotsController implements CrudController<Bot> {
+  constructor(public service: BotsService) {}
 }

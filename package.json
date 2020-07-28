@@ -1,81 +1,88 @@
 {
-	"author": {
-		"email": "jonah@jonah.pw",
-		"name": "Jonah Snider",
-		"url": "https://jonah.pw"
-	},
-	"dependencies": {
-		"@godaddy/terminus": "4.3.1",
-		"@nestjs/cli": "6.14.2",
-		"@nestjs/common": "6.11.11",
-		"@nestjs/core": "6.11.11",
-		"@nestjs/passport": "6.2.0",
-		"@nestjs/platform-express": "6.11.11",
-		"@nestjs/swagger": "4.3.2",
-		"@nestjs/terminus": "6.5.6",
-		"@nestjs/typeorm": "6.3.3",
-		"@nestjsx/crud": "4.4.1",
-		"@nestjsx/crud-typeorm": "4.4.1",
-		"@sentry/node": "5.13.2",
-		"@types/ws": "7.2.2",
-		"class-transformer": "0.2.3",
-		"class-validator": "0.11.0",
-		"common-tags": "1.8.0",
-		"discord.js": "discordjs/discord.js",
-		"dotenv": "8.2.0",
-		"influx": "5.5.1",
-		"passport": "0.4.1",
-		"passport-http-bearer": "1.0.1",
-		"pg": "7.18.2",
-		"reflect-metadata": "0.1.13",
-		"rimraf": "3.0.2",
-		"rxjs": "6.5.4",
-		"sqreen": "1.38.4",
-		"swagger-ui-express": "4.1.2",
-		"typeorm": "0.2.24"
-	},
-	"description": "Rewritten server-side API for Discoin",
-	"devDependencies": {
-		"@types/common-tags": "1.8.0",
-		"@types/express": "4.17.3",
-		"@types/node": "12.12.38",
-		"@types/passport-http-bearer": "1.0.34",
-		"prettier": "1.19.1",
-		"ts-node": "8.6.2",
-		"tsconfig-paths": "3.9.0",
-		"typescript": "3.8.3",
-		"xo": "0.28.0"
-	},
-	"engines": {
-		"node": "12"
-	},
-	"license": "Apache-2.0",
-	"name": "discoin-server-rewrite",
-	"private": true,
-	"scripts": {
-		"build": "nest build",
-		"format": "prettier --ignore-path .gitignore --check \"./**/*.{{j,t}{s,sx},flow,{sc,c,le}ss,json,m{d,dx},{y,ya}ml}\"",
-		"lint": "xo",
-		"prebuild": "rimraf tsc_output",
-		"start": "nest start",
-		"start:debug": "nest start --debug --watch",
-		"start:dev": "nest start --watch",
-		"start:prod": "node tsc_output/main"
-	},
-	"version": "3.0.0",
-	"xo": {
-		"overrides": [
-			{
-				"files": "**/*.service.ts",
-				"rules": {
-					"@typescript-eslint/no-useless-constructor": "off"
-				}
-			}
-		],
-		"prettier": true,
-		"rules": {
-			"import/extensions": "off",
-			"new-cap": "off"
-		}
-	}
+  "author": "",
+  "dependencies": {
+    "@nestjs/common": "^7.0.0",
+    "@nestjs/config": "^0.5.0",
+    "@nestjs/core": "^7.0.0",
+    "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/swagger": "^4.5.9",
+    "@nestjs/terminus": "^7.0.1",
+    "@nestjs/typeorm": "^7.1.0",
+    "@nestjsx/crud": "^4.6.2",
+    "@nestjsx/crud-typeorm": "^4.6.2",
+    "@ntegral/nestjs-sentry": "^1.0.3",
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.12.2",
+    "convert": "^0.7.0-canary",
+    "discord.js": "^12.2.0",
+    "influx": "^5.5.1",
+    "nest-influxdb": "^0.0.3",
+    "pg": "^8.2.1",
+    "reflect-metadata": "^0.1.13",
+    "rimraf": "^3.0.2",
+    "rxjs": "^6.5.4",
+    "sqreen": "^1.50.0",
+    "swagger-ui-express": "^4.1.4",
+    "typeorm": "^0.2.25"
+  },
+  "description": "",
+  "devDependencies": {
+    "@compodoc/compodoc": "^1.1.11",
+    "@nestjs/cli": "^7.0.0",
+    "@nestjs/schematics": "^7.0.0",
+    "@nestjs/testing": "^7.0.0",
+    "@types/express": "^4.17.3",
+    "@types/jest": "25.1.4",
+    "@types/node": "^12.0.0",
+    "@types/supertest": "^2.0.8",
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "jest": "^25.1.0",
+    "prettier": "^2.0.0",
+    "supertest": "^4.0.2",
+    "ts-jest": "25.2.1",
+    "ts-loader": "^6.2.1",
+    "ts-node": "^8.6.2",
+    "tsconfig-paths": "^3.9.0",
+    "type-fest": "^0.15.0",
+    "typescript": "^3.7.4"
+  },
+  "jest": {
+    "coverageDirectory": "../coverage",
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testEnvironment": "node",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    }
+  },
+  "license": "UNLICENSED",
+  "name": "api-dev",
+  "private": true,
+  "scripts": {
+    "build": "nest build",
+    "docs": "compodoc -p tsconfig.json",
+    "docs:dev": "compodoc -p tsconfig.json -s --watch",
+    "style": "prettier --check --ignore-path .gitignore .",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "prebuild": "rimraf dist",
+    "start": "nest start",
+    "start:debug": "nest start --debug --watch",
+    "start:dev": "nest start --watch",
+    "start:prod": "node dist/main",
+    "test": "jest",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:watch": "jest --watch"
+  },
+  "version": "3.1.0"
 }

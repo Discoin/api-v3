@@ -1,24 +1,22 @@
-import {Injectable} from '@nestjs/common';
-import {BotsService} from 'src/bots/bots.service';
-import {SignedInBot} from 'types/bot';
+import { Injectable } from '@nestjs/common';
+import { RequestBot } from 'types/express';
+import { BotsService } from 'src/bots/bots.service';
 
 @Injectable()
 export class AuthService {
-	constructor(private readonly _botsService: BotsService) {}
+  constructor(private botsService: BotsService) {}
 
-	/**
-	 * Validate a bot's authorization token.
-	 *
-	 * @param givenToken Token to authorize
-	 * @returns Authorized bot with token property removed
-	 */
-	async validateBot(givenToken: string): Promise<SignedInBot | null> {
-		const bot = await this._botsService.findOne({where: {token: givenToken}});
+  async validateToken(token: string): Promise<RequestBot> {
+    const bot = await this.botsService.findOne({
+      where: { token },
+    });
 
-		if (bot?.token === givenToken) {
-			return bot;
-		}
+    if (bot) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { token: _token, ...result } = bot;
+      return result;
+    }
 
-		return null;
-	}
+    return null;
+  }
 }

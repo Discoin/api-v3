@@ -1,27 +1,23 @@
-import {Controller} from '@nestjs/common';
-import {ApiTags} from '@nestjs/swagger';
-import {Crud} from '@nestjsx/crud';
-import {Entities} from 'src/util/constants';
-import {Currency} from './currency.entity';
-import {CurrenciesService} from './currencies.service';
+import { Controller } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { Crud, CrudController } from '@nestjsx/crud';
+import { CurrenciesService } from './currencies.service';
+import { Currency } from './currency.entity';
 
 @Crud({
-	model: {
-		type: Currency
-	},
-	routes: {
-		only: ['getManyBase', 'getOneBase']
-	},
-	params: {
-		id: {
-			field: 'id',
-			type: 'string',
-			primary: true
-		}
-	}
+  model: { type: Currency },
+  routes: { only: ['getManyBase', 'getOneBase'] },
+  validation: { forbidUnknownValues: true },
+  params: {
+    id: {
+      field: 'id',
+      type: 'string',
+      primary: true,
+    },
+  },
 })
-@Controller(Entities.CURRENCIES)
-@ApiTags(Entities.CURRENCIES)
-export class CurrenciesController {
-	constructor(public service: CurrenciesService) {}
+@ApiTags('currencies')
+@Controller('currencies')
+export class CurrenciesController implements CrudController<Currency> {
+  constructor(public service: CurrenciesService) {}
 }

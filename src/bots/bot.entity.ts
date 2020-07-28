@@ -1,45 +1,44 @@
-import {createHmac, randomBytes} from 'crypto';
-import {ApiProperty} from '@nestjs/swagger';
-import {Currency} from 'src/currencies/currency.entity';
-import {salt} from 'src/util/config';
-import {Entities} from 'src/util/constants';
-import {BeforeInsert, Column, Entity, JoinColumn, OneToOne, PrimaryColumn} from 'typeorm';
+import { ApiProperty } from '@nestjs/swagger';
+import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
+import { Currency } from 'src/currencies/currency.entity';
 
-@Entity({name: Entities.BOTS})
+/**
+ * A participating bot on Discoin
+ */
+@Entity({ name: 'bots' })
 export class Bot {
-	/**
-	 * The Discord user ID of the bot.
-	 */
-	@PrimaryColumn({unique: true})
-	@ApiProperty({
-		description: 'The Discord user ID of the bot.',
-		type: 'string',
-		example: '388191157869477888'
-	})
-	id!: string;
+  /**
+   * The Discord user ID of the bot.
+   * @example '388191157869477888'
+   */
+  @PrimaryColumn({ unique: true, type: 'bigint' })
+  @ApiProperty({ example: '388191157869477888' })
+  discord_id: string;
 
-	/** The currency code for this bot. */
-	@OneToOne(_type => Currency, {eager: true})
-	@JoinColumn()
-	@ApiProperty({description: 'The currency code for this bot.'})
-	currency!: Currency;
+  /**
+   * The name of this bot.
+   * @example 'Dice'
+   */
+  @Column()
+  @ApiProperty({ example: 'Dice' })
+  name: string;
 
-	/**
-	 * The authorization token to issue transactions from this bot.
-	 * Generated automatically as a SHA-256 hash.
-	 */
-	@Column({
-		unique: true
-	})
-	token!: string;
+  /** The currencies for this bot. */
+  @OneToMany(
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    (type) => Currency,
+    (currency) => currency.bot,
+    { eager: true },
+  )
+  currencies: Currency[];
 
-	/**
-	 * Generate the token for this bot.
-	 */
-	@BeforeInsert()
-	addToken(): void {
-		this.token = createHmac('sha256', salt)
-			.update(randomBytes(128))
-			.digest('hex');
-	}
+  /**
+   * The authorization token to update transactions from this bot.
+   * @example 'dementia6vice8jaywalk4goal8satin2brusque8dreary7NAIADES3memo9trustful'
+   */
+  @Column({
+    unique: true,
+  })
+  @ApiProperty({ readOnly: true })
+  token: string;
 }
