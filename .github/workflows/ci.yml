@@ -38,4 +38,4 @@ jobs:
       - name: Install dependencies with Yarn
         run: yarn install
       - name: Check formatting with Prettier
-        run: yarn run format
+        run: yarn run style
