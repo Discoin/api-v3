@@ -123,7 +123,9 @@ export class Transaction {
         .update({ reserve: () => `reserve - ${this.payout}` })
         .where('id = :id', { id: this.to.id })
         .execute(),
+    ]);
 
+    await Promise.all([
       // TODO: The update operation is the same for both here, the only thing changing is the value of `id`
       // Update the value of the `from` currency
       currencies
