@@ -14,6 +14,8 @@ Sentry.init({
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors();
+
   const options = new DocumentBuilder()
     .setTitle('Discoin')
     .setDescription('Discoin API docs')
