@@ -1,6 +1,6 @@
 import { Controller, ForbiddenException, Param, UnprocessableEntityException, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { CreateManyDto, Crud, CrudAuth, CrudController, CrudRequest, Override, ParsedBody, ParsedRequest } from '@nestjsx/crud';
+import { CreateManyDto, Crud, CrudAuth, CrudController, CrudRequest, Override, ParsedBody, ParsedRequest, JoinOptions } from '@nestjsx/crud';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { Bot } from 'src/bots/bot.entity';
 import { BotsService } from 'src/bots/bots.service';
@@ -30,6 +30,14 @@ interface HydratedAPITransaction extends Except<APITransaction, 'to' | 'from'> {
 
 @Crud({
   model: { type: Transaction },
+  query: {
+    join: {
+      from: { eager: true, allow: ['id', 'name'] as Array<keyof Currency> },
+      'from.bot': { eager: true, allow: ['id', 'name'] as Array<keyof Bot>, alias: 'fromBot' },
+      to: { eager: true, allow: ['id', 'name'] as Array<keyof Currency> },
+      'to.bot': { eager: true, allow: ['id', 'name'] as Array<keyof Bot>, alias: 'toBot' },
+    },
+  },
   routes: {
     only: ['getManyBase', 'getOneBase', 'updateOneBase', 'createManyBase', 'createOneBase'],
   },
