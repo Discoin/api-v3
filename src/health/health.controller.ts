@@ -33,7 +33,7 @@ export class HealthController {
       () =>
         this.disk.checkStorage('storage', {
           path: '/',
-          thresholdPercent: process.env.NODE_ENV === 'production' ? 0.75 : 1,
+          thresholdPercent: process.env.NODE_ENV === 'production' ? 0.9 : 1,
         }),
     ]);
   }
