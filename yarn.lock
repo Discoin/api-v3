@@ -8821,10 +8821,10 @@ sq-ecosystem@^0.13.1:
     shimmer "^1.2.1"
     uuid "^3.2.1"
 
-sq-native@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/sq-native/-/sq-native-1.0.0.tgz#9ceb25eacc8962016f910df0cc6ab2ff7653b344"
-  integrity sha512-bgXrTu7wxigaSBfPZX6BO252xZWGnLpHqE4Vk78JEoyMGVnTwJyPT+mBtG6kD2QjPzQh4L0zPrx7SqltDe+D8w==
+sq-native@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/sq-native/-/sq-native-1.0.4.tgz#b20e5d757648e9d715b4b879571b6068bf7074be"
+  integrity sha512-NyYolhB/8bgqhdGyLmNpXOGmOcKqLsvNyaH7uO1++WbSeS1TiSscvnKfqblCVu24a+m6rmmi1F5kC6xk8sgPUQ==
   dependencies:
     binary-downloader "^0.2.0"
     detect-libc "^1.0.3"
@@ -8837,10 +8837,10 @@ sqreen-sdk@^0.7.0:
   dependencies:
     axios "^0.19.0"
 
-sqreen@1.54.2:
-  version "1.54.2"
-  resolved "https://registry.yarnpkg.com/sqreen/-/sqreen-1.54.2.tgz#40167ca8f68d4fc5548afefda3512d64a21f73cc"
-  integrity sha512-jAxnkEjLjTd25VUuK4ZwsRjyxDm00ZtZb4N2EiqgZCscRdrmixFGpjjcwrj1eZeQfvDff2x3dMNXrED5Lcah/A==
+sqreen@1.55.0:
+  version "1.55.0"
+  resolved "https://registry.yarnpkg.com/sqreen/-/sqreen-1.55.0.tgz#e78d19db84d469d70a9600ab9992adf0ba50ca83"
+  integrity sha512-Nn1dklNf8FmkB3tN2Cu4WryrbnNZ2/IFPV3PhgAKwe9vTFhmeXhVUf2v9lWu8sVBzc4B0ceBzjKIfVkC5nZEPg==
   dependencies:
     async-listener "^0.6.0"
     async-lock "^1.2.2"
@@ -8867,7 +8867,7 @@ sqreen@1.54.2:
     winston "^2.4.4"
     zxcvbn "^4.4.2"
   optionalDependencies:
-    sq-native "1.0.0"
+    sq-native "1.0.4"
 
 sshpk@^1.7.0:
   version "1.16.1"
