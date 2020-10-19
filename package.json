@@ -15,7 +15,7 @@
     "class-transformer": "0.3.1",
     "class-validator": "0.12.2",
     "convert": "1.0.1",
-    "discord.js": "12.3.1",
+    "discord.js": "12.4.0",
     "influx": "5.6.3",
     "nest-influxdb": "0.0.3",
     "pg": "8.4.1",
