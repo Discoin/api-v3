@@ -18,7 +18,7 @@
     "discord.js": "12.4.1",
     "influx": "5.6.3",
     "nest-influxdb": "0.0.3",
-    "pg": "8.4.1",
+    "pg": "8.4.2",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "rxjs": "6.6.3",
