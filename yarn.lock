@@ -956,10 +956,10 @@
   dependencies:
     mkdirp "^1.0.4"
 
-"@ntegral/nestjs-sentry@1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@ntegral/nestjs-sentry/-/nestjs-sentry-1.0.5.tgz#f58adda203bd813106b24e9bd60199739394d8a5"
-  integrity sha512-8B19lspQsVUWC2fBGNPU2wkND2dAr6uNp5nB+LL0jIAT6uBQaKyBG2HFGu27wTbxOkS0talJhvWIfhUdxREiBw==
+"@ntegral/nestjs-sentry@1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@ntegral/nestjs-sentry/-/nestjs-sentry-1.0.6.tgz#404104c3e828dcd42a2bd52c4869377c3f242a03"
+  integrity sha512-597r/D0tftwmJTdwXr28kUWpof/yXx0W9M89R9TcQJwFSBni/7ja51AKn5c3jIEU7LGAgvCVQknZNsSPWLWxIA==
   dependencies:
     "@nestjs/common" "^7.6.5"
     "@nestjs/core" "^7.6.5"
