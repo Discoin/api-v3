@@ -12,7 +12,7 @@
     "@nestjsx/crud-typeorm": "4.6.2",
     "@ntegral/nestjs-sentry": "2.0.1",
     "@sentry/node": "6.1.0",
-    "class-transformer": "0.3.1",
+    "class-transformer": "0.3.2",
     "class-validator": "0.13.1",
     "convert": "1.6.2",
     "discord.js": "12.5.1",
