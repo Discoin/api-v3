@@ -1000,10 +1000,10 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@ntegral/nestjs-sentry@2.0.5":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@ntegral/nestjs-sentry/-/nestjs-sentry-2.0.5.tgz#9e1a044cf628cc4429a1f19e93919e3fe5da6714"
-  integrity sha512-Q/pEqyEfJBxuCLEI++sdIIUmL5V0ndHupmNBcPEVb49Bu/mKf0m4oP2hHzyM3icyX6pt00DlklxJDxvmPjXYRA==
+"@ntegral/nestjs-sentry@2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@ntegral/nestjs-sentry/-/nestjs-sentry-2.0.6.tgz#f71de67b9898c825e08143d03c58052b6b8ead74"
+  integrity sha512-zkpdJl3Zuzm1+pYnw8v2k6VnGnYzslVFKbKUxxUr6/wSgRpOGUhaBEi7zkSsX5YMslSydbUAPlCIbeTA3cieXA==
   optionalDependencies:
     "@nestjs/graphql" "^7.9.9"
 
