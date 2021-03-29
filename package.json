@@ -22,7 +22,7 @@
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "rxjs": "6.6.7",
-    "sqreen": "1.61.0",
+    "sqreen": "1.62.0",
     "swagger-ui-express": "4.1.6",
     "typeorm": "0.2.31"
   },
