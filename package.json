@@ -24,7 +24,7 @@
     "rxjs": "6.6.7",
     "sqreen": "1.62.0",
     "swagger-ui-express": "4.1.6",
-    "typeorm": "0.2.31"
+    "typeorm": "0.2.32"
   },
   "description": "",
   "devDependencies": {
