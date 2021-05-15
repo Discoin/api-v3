@@ -184,7 +184,7 @@ export class TransactionsController implements CrudController<Transaction> {
   // You MUST keep the type of the @ParsedBody() argument as the Transaction class or else the class-validator decorators won't run
   // This is actually an APITransaction, but all of the validation logic is in the Transaction entity
   async createOne(@ParsedRequest() request: CrudRequest, @ParsedBody() _dto: Transaction): Promise<Transaction> {
-    const dto: APITransaction = (_dto as unknown) as APITransaction;
+    const dto: APITransaction = _dto as unknown as APITransaction;
 
     // Throw an error if something is wrong with the transaction
     await this.validate(dto, request.parsed.authPersist as RequestBot);
@@ -200,7 +200,7 @@ export class TransactionsController implements CrudController<Transaction> {
   @UseGuards(AuthGuard)
   @ApiBearerAuth()
   async createMany(@ParsedRequest() request: CrudRequest, @ParsedBody() _dto: CreateManyDto<Transaction>): Promise<Transaction[]> {
-    const dto: CreateManyDto<APITransaction> = (_dto as unknown) as CreateManyDto<APITransaction>;
+    const dto: CreateManyDto<APITransaction> = _dto as unknown as CreateManyDto<APITransaction>;
 
     const transactions = await Promise.all(
       dto.bulk.map(async (transaction) => {
