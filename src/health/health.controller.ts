@@ -3,12 +3,12 @@ import {
   DiskHealthIndicator,
   DNSHealthIndicator,
   HealthCheck,
+  HealthCheckResult,
   HealthCheckService,
   MemoryHealthIndicator,
   TypeOrmHealthIndicator,
-  HealthCheckResult,
 } from '@nestjs/terminus';
-import { convert } from 'convert';
+import convert from 'convert';
 
 @Controller('health')
 export class HealthController {
@@ -27,9 +27,9 @@ export class HealthController {
       () => this.dns.pingCheck('network-ping', 'https://1.1.1.1'),
       () =>
         this.db.pingCheck('db-ping', {
-          timeout: convert(5).from('seconds').to('milliseconds'),
+          timeout: convert(5, 'seconds').to('milliseconds'),
         }),
-      () => this.memory.checkHeap('memory-heap', convert(500).from('megabytes').to('bytes')),
+      () => this.memory.checkHeap('memory-heap', convert(500, 'megabytes').to('bytes')),
       () =>
         this.disk.checkStorage('storage', {
           path: '/',
