@@ -1973,10 +1973,10 @@
     "@nodelib/fs.scandir" "2.1.4"
     fastq "^1.6.0"
 
-"@ntegral/nestjs-sentry@3.0.5":
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/@ntegral/nestjs-sentry/-/nestjs-sentry-3.0.5.tgz#f916f02e611709ee9fb5a3d2e4c77890a2bcd5b9"
-  integrity sha512-aJ7GztOOeNh+YWu0hRpjsx0A2HG8ER/rC1ccxopGXUwusNCf30VJX5gB3e+RvbtJxHFQtvz3tGxhgEDF0ggAEA==
+"@ntegral/nestjs-sentry@3.0.6":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/@ntegral/nestjs-sentry/-/nestjs-sentry-3.0.6.tgz#723f829f15532be8f3064a2df45f5a56b32fd4c5"
+  integrity sha512-UfBZeamrRlZ1IukRrNJ/fsJjxVHD9WGAGQ3wwBIlpLNFNHAyj+hedtkAnq8vcRECpndDnKeIH5X84L1pBgo5CQ==
   optionalDependencies:
     "@nestjs/graphql" "8.0.2"
 
