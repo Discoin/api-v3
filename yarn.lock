@@ -3860,10 +3860,10 @@ convert-source-map@^1.4.0, convert-source-map@^1.5.1, convert-source-map@^1.6.0,
   dependencies:
     safe-buffer "~5.1.1"
 
-convert@4.1.3:
-  version "4.1.3"
-  resolved "https://registry.yarnpkg.com/convert/-/convert-4.1.3.tgz#1f201eff10c8989614250c310c56770233ec6476"
-  integrity sha512-xu5iZrDpGYN4dqdNRKkAlDauqOkj7+dzjDuLT6tnuILaLkPxYnRH4aQEgXpFaWQiG7d+TsKiuke1ovIxNKmaSQ==
+convert@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/convert/-/convert-4.2.0.tgz#ebd06b2e03cd4330ddfaebc78318137ff2682789"
+  integrity sha512-P48O/Vj/E0mU3fgSTOuFqFupoajgXeQz6gQKN24v6ZDiM/jzXfw9XCWKSmN+CAifpR8CLgpSRVGNvAtEhcwMKg==
 
 cookie-signature@1.0.6:
   version "1.0.6"
