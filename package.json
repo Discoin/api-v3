@@ -28,7 +28,7 @@
   },
   "description": "",
   "devDependencies": {
-    "@compodoc/compodoc": "1.1.17",
+    "@compodoc/compodoc": "1.1.18",
     "@nestjs/cli": "8.1.6",
     "@nestjs/schematics": "8.0.5",
     "@nestjs/testing": "8.2.4",
