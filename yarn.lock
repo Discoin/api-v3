@@ -3871,10 +3871,10 @@ convert-source-map@^1.4.0, convert-source-map@^1.5.1, convert-source-map@^1.6.0,
   dependencies:
     safe-buffer "~5.1.1"
 
-convert@4.3.2:
-  version "4.3.2"
-  resolved "https://registry.yarnpkg.com/convert/-/convert-4.3.2.tgz#fcccad82e5044880c1c5e429142133869bb9e97e"
-  integrity sha512-ilZHT9MXLqTTMjRGHzrcTCDzT09GsCi8+PUkuv+z8d/6q80Lfk/A1wziEp/8cajvJy0ntuIW3Vpmt+q5HVknNQ==
+convert@4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/convert/-/convert-4.4.0.tgz#b6eaca5559fd78dc8be026449bb5c2fcf931cb2c"
+  integrity sha512-lYEgllCtc8NuUE2wwxu/dQD1sLh/yptyjLXtgHXIXXLCO7ncPqQZS+4LZdTwxS/FbGGdmXEz1K37Ze7+jMF2SQ==
 
 cookie-signature@1.0.6:
   version "1.0.6"
