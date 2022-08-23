@@ -4040,10 +4040,10 @@ convert-source-map@^1.4.0, convert-source-map@^1.5.1, convert-source-map@^1.6.0,
   dependencies:
     safe-buffer "~5.1.1"
 
-convert@4.6.1:
-  version "4.6.1"
-  resolved "https://registry.yarnpkg.com/convert/-/convert-4.6.1.tgz#86e8c50166170870f0113d1cf023895c8790c309"
-  integrity sha512-UkzNpdAG4AjZSfdpzDUIB9CrwyPtx70TkabqiDrhC5zGA53SNwFF/yHUbbjzeTtxfKuPgIPJFa7O3OA8AQ8A/g==
+convert@4.6.2:
+  version "4.6.2"
+  resolved "https://registry.yarnpkg.com/convert/-/convert-4.6.2.tgz#3cf9393befdf52b0a21a9709f6eb2cc1c2f825a8"
+  integrity sha512-ENmlAUbCVdemYx9NFvMFgCt2FAY2vTqgQj92dgIZX4ewtg7dtxOLCfWec8u+yikXzyKDf1u0JJvcZBtgqQL9Dw==
 
 cookie-signature@1.0.6:
   version "1.0.6"
