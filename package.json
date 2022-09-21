@@ -14,7 +14,7 @@
     "@sentry/node": "6.19.7",
     "class-transformer": "0.3.1",
     "class-validator": "0.13.2",
-    "convert": "4.6.2",
+    "convert": "4.6.3",
     "discord.js": "12.5.3",
     "influx": "5.9.3",
     "nest-influxdb": "0.0.3",
