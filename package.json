@@ -19,7 +19,7 @@
     "influx": "5.9.3",
     "nest-influxdb": "0.0.3",
     "pg": "8.11.3",
-    "reflect-metadata": "0.1.14",
+    "reflect-metadata": "0.2.1",
     "rimraf": "3.0.2",
     "rxjs": "7.8.1",
     "sqreen": "1.64.2",
