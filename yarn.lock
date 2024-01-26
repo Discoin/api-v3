@@ -9507,17 +9507,17 @@ svg-pan-zoom@^3.6.1:
   resolved "https://registry.yarnpkg.com/svg-pan-zoom/-/svg-pan-zoom-3.6.1.tgz#f880a1bb32d18e9c625d7715350bebc269b450cf"
   integrity sha512-JaKkGHHfGvRrcMPdJWkssLBeWqM+Isg/a09H7kgNNajT1cX5AztDTNs+C8UzpCxjCTRrG34WbquwaovZbmSk9g==
 
-swagger-ui-dist@>=4.11.0:
-  version "4.11.1"
-  resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-4.11.1.tgz#1e9c0e62bdac632f7b206c95ef9cbe986097606a"
-  integrity sha512-pf3kfSTYdF9mYFY2VnfJ51wnXlSVhEGdtymhpHzfbFw2jTbiEWgBoVz5EB9aW2EaJvUGTM1YHAXYZX7Jk4RdAQ==
+swagger-ui-dist@>=5.0.0:
+  version "5.11.1"
+  resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-5.11.1.tgz#ecd2151beee96e0c16ab08ce2f6b262035ca7049"
+  integrity sha512-H0oTRHqAfuyjNBLILhS9OwC0WN/xyfNJQtRBR35AnLY34A5W107zRhLQMzL47uuH87+f+RwxCMeLvNFOdyZ+Tg==
 
-swagger-ui-express@4.6.3:
-  version "4.6.3"
-  resolved "https://registry.yarnpkg.com/swagger-ui-express/-/swagger-ui-express-4.6.3.tgz#870d0892654fe80e6970a2d680e22521acd2dc19"
-  integrity sha512-CDje4PndhTD2HkgyKH3pab+LKspDeB/NhPN2OF1j+piYIamQqBYwAXWESOT1Yju2xFg51bRW9sUng2WxDjzArw==
+swagger-ui-express@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/swagger-ui-express/-/swagger-ui-express-5.0.0.tgz#7a00a18dd909574cb0d628574a299b9ba53d4d49"
+  integrity sha512-tsU9tODVvhyfkNSvf03E6FAk+z+5cU3lXAzMy6Pv4av2Gt2xA0++fogwC4qo19XuFf6hdxevPuVCSKFuMHJhFA==
   dependencies:
-    swagger-ui-dist ">=4.11.0"
+    swagger-ui-dist ">=5.0.0"
 
 symbol-observable@4.0.0:
   version "4.0.0"
