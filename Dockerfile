@@ -1,5 +1,5 @@
 ### INSTALLER STAGE ###
-FROM node:16.20.2-alpine AS installer
+FROM node:20.18.0-alpine AS installer
 
 # Create app directory
 WORKDIR /usr/src/installer
@@ -11,7 +11,7 @@ COPY package.json yarn.lock ./
 RUN yarn install --production=true
 
 ### BUILDER STAGE ###
-FROM node:16.20.2-alpine AS builder
+FROM node:20.18.0-alpine AS builder
 
 # Create app directory
 WORKDIR /usr/src/builder
@@ -43,7 +43,7 @@ ENTRYPOINT ["yarn", "run", "start:prod"]
 
 
 ### SERVER STAGE ###
-FROM node:16.20.2-alpine AS server
+FROM node:20.18.0-alpine AS server
 
 LABEL maintainer 'Jonah Snider <jonah@jonah.pw> (jonah.pw)'
 
