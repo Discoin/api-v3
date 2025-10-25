@@ -2646,10 +2646,10 @@
     "@types/qs" "*"
     "@types/range-parser" "*"
 
-"@types/express@4.17.23":
-  version "4.17.23"
-  resolved "https://registry.yarnpkg.com/@types/express/-/express-4.17.23.tgz#35af3193c640bfd4d7fe77191cd0ed411a433bef"
-  integrity sha512-Crp6WY9aTYP3qPi2wGDo9iUe/rceX01UMhnF1jmwDcKCFM6cx7YhGP/Mpr3y9AASpfHixIG0E6azCcL5OcDHsQ==
+"@types/express@4.17.24":
+  version "4.17.24"
+  resolved "https://registry.yarnpkg.com/@types/express/-/express-4.17.24.tgz#7d4be463143e9f2f146ef805a619076ce4aaec26"
+  integrity sha512-Mbrt4SRlXSTWryOnHAh2d4UQ/E7n9lZyGSi6KgX+4hkuL9soYbLOVXVhnk/ODp12YsGc95f4pOvqywJ6kngUwg==
   dependencies:
     "@types/body-parser" "*"
     "@types/express-serve-static-core" "^4.17.33"
