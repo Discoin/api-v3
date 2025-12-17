@@ -4298,10 +4298,10 @@ convert-source-map@^2.0.0:
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-2.0.0.tgz#4b560f649fc4e918dd0ab75cf4961e8bc882d82a"
   integrity sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==
 
-convert@4.14.1:
-  version "4.14.1"
-  resolved "https://registry.yarnpkg.com/convert/-/convert-4.14.1.tgz#4f9150085b2b59f41f8ad01e6249ff32a38becfc"
-  integrity sha512-haeYUERJCdvILEfZC2OHZd8JIIvU6Kl93zfDrDCG3dvws4icuWC2D5O7jyaKh8vjECdfkWkVB6qDycQpGhWWSA==
+convert@5.14.1:
+  version "5.14.1"
+  resolved "https://registry.yarnpkg.com/convert/-/convert-5.14.1.tgz#0381a5108c5b2b9eef575553a7354dbaf61722eb"
+  integrity sha512-zp1UyVnTL7g/T+sw1Bb1yCIDZIR50eKFnYJXsmRP2SXs3RfzligO3JWc2ZtqzdJX0/7xwfma/J8j69JD5MB2aA==
 
 cookie-signature@1.0.6:
   version "1.0.6"
