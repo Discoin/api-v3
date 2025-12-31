@@ -23,7 +23,7 @@
     "rimraf": "3.0.2",
     "rxjs": "7.8.2",
     "sqreen": "1.64.2",
-    "swagger-ui-express": "4.6.3",
+    "swagger-ui-express": "5.0.1",
     "typeorm": "0.3.28"
   },
   "description": "",
