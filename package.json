@@ -10,7 +10,7 @@
     "@nestjs/typeorm": "8.1.4",
     "@nestjsx/crud": "4.6.2",
     "@nestjsx/crud-typeorm": "4.6.2",
-    "@ntegral/nestjs-sentry": "3.0.7",
+    "@ntegral/nestjs-sentry": "4.0.1",
     "@sentry/node": "6.19.7",
     "class-transformer": "0.3.1",
     "class-validator": "0.14.3",
